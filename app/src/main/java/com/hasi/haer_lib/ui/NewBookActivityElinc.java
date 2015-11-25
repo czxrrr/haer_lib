@@ -7,13 +7,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -49,7 +46,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import cn.bmob.im.BmobUserManager;
-import cn.bmob.im.bean.BmobMsg;
 import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -58,29 +54,14 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
-public class NewQuestionActivityElinc extends ActivityBase {
+public class NewBookActivityElinc extends ActivityBase {
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
-    private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
 
-        static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
-
-        @Override
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            if (loadedImage != null) {
-                ImageView imageView = (ImageView) view;
-                boolean firstDisplay = !displayedImages.contains(imageUri);
-                if (firstDisplay) {
-                    FadeInBitmapDisplayer.animate(imageView, 500);
-                    displayedImages.add(imageUri);
-                }
-            }
-        }
-    }
     EditText questionContent;
     EditText questionTitle;
     List<String> tags;
     EditText et_input_tags;
-    BmobUserManager userManager = BmobUserManager.getInstance(NewQuestionActivityElinc.this);
+    BmobUserManager userManager = BmobUserManager.getInstance(NewBookActivityElinc.this);
     LinearLayout layout_all_of_new_question;
     ImageView iv_set_question_avatar; //显示上传的图片
     Question new_question;  //这个是需要save 的新question
@@ -131,7 +112,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onClick(View v) {
                 String a=et_input_tags.getText().toString();
-                //Tool.alert(NewQuestionActivityElinc.this,a);
+                //Tool.alert(NewBookActivityElinc.this,a);
                 System.out.println(a);
                 if(!a.equals("") && a!=null){a=a+",学习";}
                 else{a="学习";}
@@ -183,31 +164,31 @@ public class NewQuestionActivityElinc extends ActivityBase {
         new_question.setTitle(title);
         new_question.setNumberOfAnswer(0);
         new_question.setAuthor(BmobUser.getCurrentUser(this, User.class));
-        new_question.save(NewQuestionActivityElinc.this, new SaveListener() {
+        new_question.save(NewBookActivityElinc.this, new SaveListener() {
             @Override
             public void onSuccess() {
                 // TODO Auto-generated method stub
                 String id = new_question.getObjectId();
-                Tool.alert(NewQuestionActivityElinc.this, "提问成功，请静候答案");
-                User user = BmobUser.getCurrentUser(NewQuestionActivityElinc.this, User.class);
+                Tool.alert(NewBookActivityElinc.this, "提问成功，请静候答案");
+                User user = BmobUser.getCurrentUser(NewBookActivityElinc.this, User.class);
                 BmobRelation relation = new BmobRelation();
                 Question q = new Question();
                 q.setObjectId(id);
                 relation.add(q);
                 user.setFollow(relation);
-                user.update(NewQuestionActivityElinc.this, new UpdateListener() {
+                user.update(NewBookActivityElinc.this, new UpdateListener() {
                     @Override
                     public void onSuccess() {
                         // TODO Auto-generated method stub
                         //Log.i("life", "多对多关联添加成功");
-                        //Tool.alert(NewQuestionActivityElinc.this, "收藏成功");
+                        //Tool.alert(NewBookActivityElinc.this, "收藏成功");
                     }
 
                     @Override
                     public void onFailure(int arg0, String arg1) {
                         // TODO Auto-generated method stub
                         // Log.i("life", "多对多关联添加失败");
-                        //Tool.alert(NewQuestionActivityElinc.this, "提交失败，请检查网络");
+                        //Tool.alert(NewBookActivityElinc.this, "提交失败，请检查网络");
                     }
                 });
                 finish();
@@ -216,7 +197,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onFailure(int code, String arg0) {
                 // TODO Auto-generated method stub
-                Tool.alert(NewQuestionActivityElinc.this, "提问失败，请查看网络状态");
+                Tool.alert(NewBookActivityElinc.this, "提问失败，请查看网络状态");
             }
         });
     }
@@ -338,7 +319,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onSuccess() {
                 // TODO Auto-generated method stub
-                String url = bmobFile.getFileUrl(NewQuestionActivityElinc.this);
+                String url = bmobFile.getFileUrl(NewBookActivityElinc.this);
                 // ShowToast(url);
                 if (url != null) {
                     new_question.setQuestionAvatar(url);
@@ -490,7 +471,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
     }
 
     public void upload(String path) {
-        BmobProFile.getInstance(NewQuestionActivityElinc.this).getLocalThumbnail(path,1, new LocalThumbnailListener() {
+        BmobProFile.getInstance(NewBookActivityElinc.this).getLocalThumbnail(path,1, new LocalThumbnailListener() {
 
             @Override
             public void onError(int statuscode, String errormsg) {
@@ -502,7 +483,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
             public void onSuccess(String thumbnailPath) {
                 // TODO Auto-generated method stub
                 Log.i("bmob","本地缩略图创建成功  :"+thumbnailPath);
-                BTPFileResponse response = BmobProFile.getInstance(NewQuestionActivityElinc.this).upload(thumbnailPath, new UploadListener() {
+                BTPFileResponse response = BmobProFile.getInstance(NewBookActivityElinc.this).upload(thumbnailPath, new UploadListener() {
                     @Override
                     public void onSuccess(String fileName, String url, BmobFile file) {
                         Log.i("bmob", "文件上传成功：" + fileName + ",可访问的文件地址：" + file.getUrl());
@@ -529,73 +510,20 @@ public class NewQuestionActivityElinc extends ActivityBase {
         });
 
     }
-}
+    private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
 
+        static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
 
-
-
-/*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case BmobConstants.REQUESTCODE_UPLOADAVATAR_CAMERA:// 拍照修改头像
-                if (resultCode == RESULT_OK) {
-                    if (!Environment.getExternalStorageState().equals(
-                            Environment.MEDIA_MOUNTED)) {
-                        ShowToast("SD不可用");
-                        return;
-                    }
-                    isFromCamera = true;
-                    File file = new File(filePath);
-                    degree = PhotoUtil.readPictureDegree(file.getAbsolutePath());
-                    Log.i("life", "拍照后的角度：" + degree);
-                    startImageAction(Uri.fromFile(file), 500, 500,
-                            BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
+        @Override
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            if (loadedImage != null) {
+                ImageView imageView = (ImageView) view;
+                boolean firstDisplay = !displayedImages.contains(imageUri);
+                if (firstDisplay) {
+                    FadeInBitmapDisplayer.animate(imageView, 500);
+                    displayedImages.add(imageUri);
                 }
-                break;
-            case BmobConstants.REQUESTCODE_UPLOADAVATAR_LOCATION:// 本地修改头像
-                if (avatorPop != null) {
-                    avatorPop.dismiss();
-                }
-                Uri uri = null;
-                if (data == null) {
-                    return;
-                }
-                if (resultCode == RESULT_OK) {
-                    if (!Environment.getExternalStorageState().equals(
-                            Environment.MEDIA_MOUNTED)) {
-                        ShowToast("SD不可用");
-                        return;
-                    }
-                    isFromCamera = false;
-                    uri = data.getData();
-                    startImageAction(uri, 500, 500,
-                            BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
-                } else {
-                    ShowToast("照片获取失败");
-                }
-
-                break;
-            case BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP:// 裁剪头像返回
-                // TODO sent to crop
-                if (avatorPop != null) {
-                    avatorPop.dismiss();
-                }
-                if (data == null) {
-                    // Toast.makeText(this, "取消选择", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    saveCropAvator(data);
-                }
-                // 初始化文件路径
-                filePath = "";
-                // 上传头像
-                uploadAvatar();
-                break;
-            default:
-                break;
-
+            }
         }
-    }*/
+    }
+}

@@ -164,7 +164,7 @@
         </service>
 
         <activity
-            android:name="com.hasi.haer_lib.ui.NewQuestionActivityElinc"
+            android:name=".ui.NewBookActivityElinc"
             android:label="@string/title_activity_new_question" >
         </activity>
         <activity
@@ -227,7 +227,7 @@
             android:label="@string/title_activity_pic_drag_zoom_activity_elinc" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.FindQuestion"
+            android:name=".ui.FindBook"
             android:label="@string/title_activity_find_question" >
         </activity>
         <activity

@@ -35,7 +35,7 @@ import com.hasi.haer_lib.bean.ActivityCollection;
 import com.hasi.haer_lib.bean.User;
 import com.hasi.haer_lib.ui.fragment.CardFragment;
 import com.hasi.haer_lib.ui.fragment.ContactFragment;
-import com.hasi.haer_lib.ui.fragment.QuestionFragment;
+import com.hasi.haer_lib.ui.fragment.BookFragment;
 import com.hasi.haer_lib.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -68,7 +68,7 @@ import cn.bmob.v3.update.UpdateStatus;
 public class MainActivity extends ActivityBase implements EventListener{
 	private CardFragment cardFragment;
 	private ContactFragment contactFragment;
-	private QuestionFragment questionFragment;
+	private BookFragment bookFragment;
 	private DrawerLayout mDrawerLayout;
 	private User me;
 	int currentTabIndex;
@@ -134,7 +134,7 @@ public class MainActivity extends ActivityBase implements EventListener{
                         startAnimActivity(RecentActivity.class);
                         break;
                     case R.id.action_find:
-                        startAnimActivity(FindQuestion.class);
+                        startAnimActivity(FindBook.class);
                         break;
                     case R.id.action_add:
                         if (popupWindow == null) {
@@ -170,7 +170,7 @@ public class MainActivity extends ActivityBase implements EventListener{
                         new_question.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startAnimActivity(NewQuestionActivityElinc.class);
+                                startAnimActivity(NewBookActivityElinc.class);
                                 if (popupWindow != null) {
                                     popupWindow.dismiss();
                                 }
@@ -365,8 +365,8 @@ public class MainActivity extends ActivityBase implements EventListener{
 	private void setupViewPager(ViewPager viewPager) {
 		cardFragment = new CardFragment();
 		contactFragment = new ContactFragment();
-		questionFragment = new QuestionFragment();
-		Fragment[] fragments = new Fragment[]{ questionFragment,contactFragment,cardFragment};
+		bookFragment = new BookFragment();
+		Fragment[] fragments = new Fragment[]{bookFragment,contactFragment,cardFragment};
 		Adapter adapter = new Adapter(getSupportFragmentManager());
 		adapter.addFragment(fragments[0], "校园");
 		adapter.addFragment(fragments[1], "学伴");

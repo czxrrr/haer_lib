@@ -1,6 +1,6 @@
 
 /*
-public class FindQuestion extends AppCompatActivity {
+public class FindBook extends AppCompatActivity {
 
 
 }*/
@@ -14,8 +14,6 @@ package com.hasi.haer_lib.ui;
         import android.app.ProgressDialog;
         import android.content.Intent;
         import android.os.Bundle;
-        import android.view.Menu;
-        import android.view.MenuItem;
         import android.view.View;
         import android.widget.AdapterView;
         import android.widget.Button;
@@ -26,8 +24,8 @@ package com.hasi.haer_lib.ui;
         import cn.bmob.v3.listener.FindListener;
 
         import com.hasi.haer_lib.R;
-        import com.hasi.haer_lib.adapter.QuestionListAdapter;
-        import com.hasi.haer_lib.bean.Question;
+        import com.hasi.haer_lib.adapter.BookListAdapter;
+        import com.hasi.haer_lib.bean.Book;
         import com.hasi.haer_lib.util.CollectionUtils;
         import com.hasi.haer_lib.view.xlist.XListView;
 
@@ -37,11 +35,11 @@ package com.hasi.haer_lib.ui;
  * @author smile
  * @date 2014-6-5 下午5:26:41
  */
-public class FindQuestion extends ActivityBase implements View.OnClickListener,XListView.IXListViewListener,AdapterView.OnItemClickListener {
+public class FindBook extends ActivityBase implements View.OnClickListener,XListView.IXListViewListener,AdapterView.OnItemClickListener {
     private EditText et_search_question;
-    private List<Question> question = new ArrayList<Question>();
+    private List<Book> question = new ArrayList<Book>();
     private XListView mListView;
-    private QuestionListAdapter adapter;
+    private BookListAdapter adapter;
     private final int pageCapacity=5;
     int curPage = 0;
     private ProgressDialog progress;
@@ -69,7 +67,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         mListView.setXListViewListener(this);
         mListView.pullRefreshing();
         mListView.setDividerHeight(2);
-        adapter = new QuestionListAdapter(FindQuestion.this, question);
+        adapter = new BookListAdapter(FindBook.this, question);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(this);
     }
@@ -77,29 +75,28 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
 
     private void initSearchList(final boolean isUpdate){
         if(!isUpdate){
-            progress = new ProgressDialog(FindQuestion.this);
+            progress = new ProgressDialog(FindBook.this);
             progress.setMessage("正在搜索...");
             progress.setCanceledOnTouchOutside(true);
             progress.show();
         }
-        BmobQuery<Question> eq1 = new BmobQuery<>();
+        BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
-        BmobQuery<Question> eq2 = new BmobQuery<>();
+        BmobQuery<Book> eq2 = new BmobQuery<>();
         eq2.addWhereContains("question_content", et_search_question.getText().toString());
-        BmobQuery<Question> eq3=new BmobQuery<>();
+        BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
-        List<BmobQuery<Question>> queries = new ArrayList<>();
+        List<BmobQuery<Book>> queries = new ArrayList<>();
         queries.add(eq1);
         queries.add(eq2);
         queries.add(eq3);
-        BmobQuery<Question> mainQuery = new BmobQuery<>();
+        BmobQuery<Book> mainQuery = new BmobQuery<>();
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
-        mainQuery.include("author");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Question>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
-            public void onSuccess(List<Question> list) {
+            public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
                     ShowToast("问题搜索完成!");
@@ -149,25 +146,24 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
      * @return void
      */
     private void onLoadMore(int page){
-        BmobQuery<Question> eq1 = new BmobQuery<>();
+        BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
-        BmobQuery<Question> eq2 = new BmobQuery<>();
+        BmobQuery<Book> eq2 = new BmobQuery<>();
         eq2.addWhereContains("question_content", et_search_question.getText().toString());
-        BmobQuery<Question> eq3=new BmobQuery<>();
+        BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
-        List<BmobQuery<Question>> queries = new ArrayList<>();
+        List<BmobQuery<Book>> queries = new ArrayList<>();
         queries.add(eq1);
         queries.add(eq2);
         queries.add(eq3);
-        BmobQuery<Question> mainQuery = new BmobQuery<>();
-        mainQuery.include("author");
+        BmobQuery<Book> mainQuery = new BmobQuery<>();
         mainQuery.setSkip((curPage + 1) * pageCapacity);
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Question>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
-            public void onSuccess(List<Question> list) {
+            public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
                     ShowToast("问题搜索完成!");
@@ -197,8 +193,8 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         String questionId = question.get(position-1).getObjectId();
         bundle.putString("questionId", questionId);
         intent.putExtras(bundle);
-        intent.setClass(FindQuestion.this, QuestionItemActivityElinc.class);
-        startAnimActivity(intent);
+        //intent.setClass(FindBook.this, QuestionItemActivityElinc.class);
+        //startAnimActivity(intent);
     }
 
 
@@ -227,26 +223,26 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
 
     @Override
     public void onLoadMore() {
-        BmobQuery<Question> eq1 = new BmobQuery<>();
+        BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
-        BmobQuery<Question> eq2 = new BmobQuery<>();
+        BmobQuery<Book> eq2 = new BmobQuery<>();
         eq2.addWhereContains("question_content", et_search_question.getText().toString());
-        BmobQuery<Question> eq3=new BmobQuery<>();
+        BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
-        List<BmobQuery<Question>> queries = new ArrayList<>();
+        List<BmobQuery<Book>> queries = new ArrayList<>();
         queries.add(eq1);
         queries.add(eq2);
         queries.add(eq3);
-        BmobQuery<Question> mainQuery = new BmobQuery<>();
+        BmobQuery<Book> mainQuery = new BmobQuery<>();
         mainQuery.include("author");
         mainQuery.setSkip((curPage + 1) * pageCapacity);
         curPage++;
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Question>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
-            public void onSuccess(List<Question> list) {
+            public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
                 } else {
@@ -280,13 +276,13 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
     }
 
     public void initAdapter(){
-        BmobQuery<Question> allQuery = new BmobQuery<>();
+        BmobQuery<Book> allQuery = new BmobQuery<>();
         allQuery.include("author");
         allQuery.setLimit(pageCapacity);
         allQuery.order("-createdAt");
-        allQuery.findObjects(FindQuestion.this, new FindListener<Question>() {
+        allQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
-            public void onSuccess(List<Question> list) {
+            public void onSuccess(List<Book> list) {
                 if (CollectionUtils.isNotNull(list)) {
                     question.clear();
                     adapter.addAll(list);
@@ -321,24 +317,24 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
     }
     private void refreshList(){
         curPage = 0;
-        BmobQuery<Question> eq1 = new BmobQuery<>();
+        BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
-        BmobQuery<Question> eq2 = new BmobQuery<>();
+        BmobQuery<Book> eq2 = new BmobQuery<>();
         eq2.addWhereContains("question_content", et_search_question.getText().toString());
-        BmobQuery<Question> eq3=new BmobQuery<>();
+        BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
-        List<BmobQuery<Question>> queries = new ArrayList<>();
+        List<BmobQuery<Book>> queries = new ArrayList<>();
         queries.add(eq1);
         queries.add(eq2);
         queries.add(eq3);
-        BmobQuery<Question> mainQuery = new BmobQuery<>();
+        BmobQuery<Book> mainQuery = new BmobQuery<>();
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
         mainQuery.include("author");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Question>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
-            public void onSuccess(List<Question> list) {
+            public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
                 } else {

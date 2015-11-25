@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -26,8 +25,8 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.hasi.haer_lib.R;
-import com.hasi.haer_lib.adapter.QuestionListAdapter;
-import com.hasi.haer_lib.bean.Question;
+import com.hasi.haer_lib.adapter.BookListAdapter;
+import com.hasi.haer_lib.bean.Book;
 import com.hasi.haer_lib.bean.Tool;
 import com.hasi.haer_lib.bean.User;
 import com.hasi.haer_lib.util.CollectionUtils;
@@ -40,12 +39,12 @@ import com.hasi.haer_lib.view.xlist.XListView.IXListViewListener;
  * @author smile
  * @date 2014-6-5 下午5:26:41
  */
-public class MyFavoriteActivityElinc extends ActivityBase implements OnClickListener,IXListViewListener,OnItemClickListener{
+public class MyFavoriteActivityElinc extends ActivityBase implements IXListViewListener,OnItemClickListener{
     EditText et_search_question;
     Button btn_search_question;
-    List<Question> question = new ArrayList<Question>();
+    List<Book> question = new ArrayList<>();
     XListView mListView;
-    QuestionListAdapter adapter;
+    BookListAdapter adapter;
     private View view;
     private final int pageCapacity=5;
     int curPage = 0;
@@ -77,7 +76,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
         //
         mListView.pullRefreshing();
 
-        adapter = new QuestionListAdapter(this, question);
+        adapter = new BookListAdapter(this, question);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(this);
@@ -93,36 +92,28 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
         //ShowToast("point"+position);
         bundle.putString("questionId", questionId);
         intent.putExtras(bundle);
-        intent.setClass(this, QuestionItemActivityElinc.class);
-        startAnimActivity(intent);
+        //intent.setClass(this, QuestionItemActivityElinc.class);
+        //startAnimActivity(intent);
     }
 
-
-    @Override
-    public void onClick(View arg0) {
-        // TODO Auto-generated method stub
-
-    }
 
     @Override
     public void onRefresh() {
-        // TODO Auto-generated method stub
-
+        refreshLoad();
     }
 
     @Override
     public void onLoadMore() {
-        BmobQuery<Question> query = new BmobQuery<Question>();
+        BmobQuery<Book> query = new BmobQuery<>();
         User u = BmobUser.getCurrentUser(this, User.class);
         u.setObjectId(u.getObjectId());
-        query.include("author");
         query.setSkip((curPage + 1) * pageCapacity);
         curPage++;
         query.setLimit(pageCapacity);
         query.addWhereRelatedTo("follow", new BmobPointer(u));
-        query.findObjects(this, new FindListener<Question>() {
+        query.findObjects(this, new FindListener<Book>() {
             @Override
-            public void onSuccess(List<Question> list) {
+            public void onSuccess(List<Book> list) {
                 // TODO Auto-generated method stub
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
@@ -158,15 +149,15 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
     }
 
     public void initAdapter(){
-        BmobQuery<Question> query = new BmobQuery<Question>();
+        BmobQuery<Book> query = new BmobQuery<>();
         User u = BmobUser.getCurrentUser(this, User.class);
         u.setObjectId(u.getObjectId());
         query.include("author");
         query.setLimit(pageCapacity);
         query.addWhereRelatedTo("follow", new BmobPointer(u));
-        query.findObjects(this, new FindListener<Question>() {
+        query.findObjects(this, new FindListener<Book>() {
             @Override
-            public void onSuccess(List<Question> list) {
+            public void onSuccess(List<Book> list) {
                 // TODO Auto-generated method stub
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
@@ -243,7 +234,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
         //initListView();
         initItemListener();
     }
-    protected void dialog(final Question question) {
+    protected void dialog(final Book question) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MyFavoriteActivityElinc.this);
         builder.setMessage("确认取消关注吗？");
         builder.setTitle("取消关注");

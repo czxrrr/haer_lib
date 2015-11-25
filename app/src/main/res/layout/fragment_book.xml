@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hasi.haer_lib.ui.fragment.QuestionFragment">
+    tools:context="com.hasi.haer_lib.ui.fragment.BookFragment">
 
 
 
 
     <com.hasi.haer_lib.view.xlist.XListView
-        android:id="@+id/list_question_e"
+        android:id="@+id/list_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="@android:color/transparent"
