@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.elinc.im.elinc.ui.fragment.QuestionFragment">
+    tools:context="com.hasi.haer_lib.ui.fragment.QuestionFragment">
 
 
 
 
-    <com.elinc.im.elinc.view.xlist.XListView
+    <com.hasi.haer_lib.view.xlist.XListView
         android:id="@+id/list_question_e"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
