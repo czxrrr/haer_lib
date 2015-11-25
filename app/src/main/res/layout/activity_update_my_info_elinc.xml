@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_bg_color"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/common_actionbar"
+        layout="@layout/include_action_bar" />
+
+    <LinearLayout
+        android:layout_marginTop="24dp"
+        style="@style/input_out" >
+
+        <TextView
+            style="@style/input_left"
+            android:gravity="center_vertical"
+            android:text="学校" />
+
+        <EditText
+            style="@style/input_right"
+            android:id="@+id/et_university"
+            android:gravity="center_vertical"
+            android:enabled="false"
+            android:text="浙江大学"
+            />
+    </LinearLayout>
+    <LinearLayout style="@style/input_out">
+
+        <TextView
+            style="@style/input_left"
+            android:text="校区" />
+
+        <Spinner
+            android:id="@+id/campus"
+            style="@style/input_right"
+            android:paddingLeft="0dp"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/input_out">
+
+        <TextView
+            style="@style/input_left"
+            android:text="性别" />
+
+        <RadioGroup
+            style="@style/input_right"
+            android:gravity="center_vertical"
+
+            android:id="@+id/sex"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <RadioButton
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女"
+                android:id="@+id/sex_woman" />
+
+            <RadioButton
+                android:singleLine="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="男"
+                android:id="@+id/sex_man" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/input_out">
+
+        <TextView
+            style="@style/input_left"
+            android:text="状态" />
+
+        <EditText
+            android:id="@+id/edit_sign_text"
+            style="@style/input_right"
+            android:maxLength="8"
+            android:hint="Fighting！"
+            />
+    </LinearLayout>
+    <Button
+        android:text="完成"
+        android:layout_gravity="center"
+        android:id="@+id/submit_info"
+        android:layout_marginTop="12dp"
+        style="@style/large_btn" />
+</LinearLayout>

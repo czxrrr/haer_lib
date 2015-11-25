@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.elinc.im.elinc.ui.MainActivity"
+    >
+
+    <item android:id="@+id/action_add_aim" android:title="学伴推荐"
+        android:orderInCategory="70"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/match_elinc"
+        />
+
+    <item android:id="@+id/action_add_contact" android:title="添加学伴"
+        android:orderInCategory="90"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/add_friend_elinc"/>
+
+    <item android:id="@+id/action_add_question" android:title="提问"
+        android:orderInCategory="60"
+        app:showAsAction="ifRoom"
+        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:icon="@drawable/new_question_elinc"/>
+</menu>

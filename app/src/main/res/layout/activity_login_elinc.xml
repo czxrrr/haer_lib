@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/elinc_green">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/iv_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/logo_for_login" />
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:id="@+id/elinc"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:textSize="35sp"
+                android:textColor="@color/base_color_text_white"
+                android:text="Elinc"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/input_out">
+            <!--<TextView-->
+                <!--style="@style/input_left"-->
+                <!--android:text="手机号"
+                android:textColor="#ffffff"/>-->
+            <EditText
+                android:hint="手机号"
+                android:inputType="number"
+                android:id="@+id/et_username"
+                style="@style/input_right" />
+
+        </LinearLayout>
+        <LinearLayout
+            style="@style/input_out">
+            <!--<TextView-->
+                <!--style="@style/input_left"-->
+                <!--android:text="密码"-->
+                <!--android:textColor="#ffffff"/>-->
+
+
+            <EditText
+                android:hint="密码"
+                android:inputType="textPassword"
+                android:id="@+id/et_password"
+                style="@style/input_right"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/input_out">
+
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/corner_bg_mid_btn"
+                android:gravity="center"
+                android:text="@string/login"
+                android:layout_marginRight="8dp"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/corner_bg_mid_btn2"
+                android:gravity="center"
+                android:text="注册"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_find_pwd_in_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="找回密码"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+
+</RelativeLayout>
