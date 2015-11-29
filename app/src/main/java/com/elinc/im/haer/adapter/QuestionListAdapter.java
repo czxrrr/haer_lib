@@ -42,7 +42,7 @@ public class QuestionListAdapter extends BaseListAdapter<Book> {
     public View bindView(int arg0, View convertView, ViewGroup arg2) {
         // TODO Auto-generated method stub
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.item_question_in_list_elinc, null);
+            convertView = mInflater.inflate(R.layout.item_book_in_list_elinc, null);
         }
         final Book contract = getList().get(arg0);
         TextView question_title = ViewHolder.get(convertView, R.id.question_title);

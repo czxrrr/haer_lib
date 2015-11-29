@@ -93,7 +93,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
         //ShowToast("point"+position);
         bundle.putString("questionId", questionId);
         intent.putExtras(bundle);
-        intent.setClass(this, QuestionItemActivityElinc.class);
+        intent.setClass(this, BookItemActivityElinc.class);
         startAnimActivity(intent);
     }
 
@@ -224,7 +224,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
                 String questionId = book.get(position-1).getObjectId();
                 bundle.putString("questionId", questionId);
                 intent.putExtras(bundle);
-                intent.setClass(MyFavoriteActivityElinc.this, QuestionItemActivityElinc.class);
+                intent.setClass(MyFavoriteActivityElinc.this, BookItemActivityElinc.class);
                 startAnimActivity(intent);
             }
         });

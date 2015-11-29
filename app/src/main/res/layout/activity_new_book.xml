@@ -3,7 +3,7 @@
     android:id="@+id/layout_all_of_new_question"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.elinc.im.haer.ui.NewQuestionActivityElinc"
+    tools:context="com.elinc.im.haer.ui.NewBookActivityElinc"
     android:orientation="vertical">
 
     <include
@@ -20,7 +20,7 @@
         >
 <LinearLayout
     style="@style/input_out">
-    <TextView android:text="标题"
+    <TextView android:text="书名"
         style="@style/input_left"
         android:id="@+id/title" />
     <EditText
@@ -35,7 +35,7 @@
     <TextView
         style="@style/input_left"
         android:layout_gravity="top"
-        android:text="问题描述"
+        android:text="简介"
         android:layout_marginTop="4dp"/>
 
 
@@ -77,12 +77,12 @@
                 android:layout_marginRight="10dp"
                 android:textColor="#ffffff"
                 android:layout_marginTop="10dp"
-                android:text="学习"
+                android:text="课本"
                 android:id="@+id/btn_add_study" />
             <Button
                 android:layout_width="50dp"
                 android:layout_height="25dp"
-                android:text="生活"
+                android:text="计算机"
                 android:textColor="#ffffff"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
@@ -95,7 +95,7 @@
                 android:background="@drawable/corner_bg_yellow"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:text="娱乐"
+                android:text="英语"
                 android:id="@+id/btn_add_fun" />
 
             <Button
@@ -105,7 +105,7 @@
                 android:background="@drawable/corner_bg_blue"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:text="旅行"
+                android:text="小说"
                 android:id="@+id/btn_add_life" />
         </LinearLayout>
 
@@ -115,7 +115,7 @@
             android:layout_marginLeft="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="上传图片"
+            android:text="上传封面"
             android:background="@drawable/upload"
             android:id="@+id/question_add_photo" />
 

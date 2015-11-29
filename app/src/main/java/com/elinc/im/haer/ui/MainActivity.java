@@ -116,7 +116,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 
         view = (LinearLayout)LayoutInflater.from(this).inflate(R.layout.popup_menu, null);
 		toolbar= (Toolbar) findViewById(R.id.toolbar);
-		toolbar.setTitle("郁林");
+		toolbar.setTitle("移动图书馆");
 		toolbar.setBackgroundColor(getResources().getColor(R.color.elinc_main_green));
 		setSupportActionBar(toolbar);
 		final android.support.v7.app.ActionBar main_ab = getSupportActionBar();
@@ -134,7 +134,7 @@ public class MainActivity extends ActivityBase implements EventListener{
                         startAnimActivity(RecentActivity.class);
                         break;
                     case R.id.action_find:
-                        startAnimActivity(FindQuestion.class);
+                        startAnimActivity(FindBook.class);
                         break;
                     case R.id.action_add:
                         if (popupWindow == null) {
@@ -170,7 +170,7 @@ public class MainActivity extends ActivityBase implements EventListener{
                         new_question.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startAnimActivity(NewQuestionActivityElinc.class);
+                                startAnimActivity(NewBookActivityElinc.class);
                                 if (popupWindow != null) {
                                     popupWindow.dismiss();
                                 }
@@ -368,9 +368,9 @@ public class MainActivity extends ActivityBase implements EventListener{
 		questionFragment = new QuestionFragment();
 		Fragment[] fragments = new Fragment[]{ questionFragment,contactFragment,cardFragment};
 		Adapter adapter = new Adapter(getSupportFragmentManager());
-		adapter.addFragment(fragments[0], "校园");
-		adapter.addFragment(fragments[1], "学伴");
-		adapter.addFragment(fragments[2], "目标");
+		adapter.addFragment(fragments[0], "图书馆");
+		adapter.addFragment(fragments[1], "书友");
+		adapter.addFragment(fragments[2], "个人");
 		viewPager.setAdapter(adapter);
 	}
 

@@ -74,7 +74,7 @@ import cn.bmob.v3.listener.UploadFileListener;
 /**
  * Created by HUBIN on 2015/7/25.
  */
-public class QuestionItemActivityElinc extends ActivityBase  implements View.OnClickListener,XListView.IXListViewListener,AdapterView.OnItemClickListener {
+public class BookItemActivityElinc extends ActivityBase  implements View.OnClickListener,XListView.IXListViewListener,AdapterView.OnItemClickListener {
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
     Bundle bundle;
     List<Answer> answer = new ArrayList<Answer>();
@@ -119,7 +119,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_detail_elinc);
+        setContentView(R.layout.activity_book_detail_elinc);
 
         manager = BmobChatManager.getInstance(this);
 
@@ -155,12 +155,12 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         detail_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(QuestionItemActivityElinc.this,ImageBrowserActivity.class);
+                Intent intent =new Intent(BookItemActivityElinc.this,ImageBrowserActivity.class);
                 ArrayList<String> photos = new ArrayList<String>();
                 photos.add(url);
                 intent.putStringArrayListExtra("photos", photos);
                 intent.putExtra("position", 0);
-                QuestionItemActivityElinc.this.startActivity(intent);
+                BookItemActivityElinc.this.startActivity(intent);
             }
         });
         bundle = getIntent().getExtras();
@@ -172,7 +172,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                QuestionItemActivityElinc.this.followQustion();
+                BookItemActivityElinc.this.followQustion();
             }
         });
         /*点击按钮 提交答案*/
@@ -207,7 +207,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
                 TextView titleTV = (TextView) findViewById(R.id.question_item_title);
                 titleTV.setText(object.getTitle());
                 TextView contentTV = (TextView) findViewById(R.id.question_item_question_content);
-                contentTV.setText(object.getQuestionContent());
+                contentTV.setText(object.getIntro());
                 question_date_in_question_list = (TextView) findViewById(R.id.question_date_in_question_list);
                 question_date_in_question_list.setText(Tool.showdate(object.getCreatedAt()));
                 TextView question_detail_tags= (TextView) findViewById(R.id.question_detail_tags);
@@ -218,12 +218,12 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
                     show=show+" "+a.get(ii);
                 }
                 question_detail_tags.setText(show);
-                author_in_question_list.setText(object.getAuthor().getUsername());
-                author = object.getAuthor();
-                author_name = object.getAuthor().getUsername();
+                author_in_question_list.setText(object.getOnwer().getUsername());
+                author = object.getOnwer();
+                author_name = object.getOnwer().getUsername();
                 String avatar;
 
-                avatar = object.getAuthor().getAvatar();
+                avatar = object.getOnwer().getAvatar();
                 if (avatar != null && !avatar.equals("")) {//加载头像-为了不每次都加载头像
                     ImageLoader.getInstance().displayImage(avatar, avatar_for_author_in_question_list, ImageLoadOptions.getOptions(), animateFirstListener);
                 } else {
@@ -231,19 +231,19 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
                 }
 
 
-                if (object.getQuestionAvatar() != null && object.getQuestionAvatar() != "") {
+                if (object.getBookAvatar() != null && object.getBookAvatar() != "") {
                     detail_question.setVisibility(View.VISIBLE);
-                    url = object.getQuestionAvatar();
+                    url = object.getBookAvatar();
                     ImageLoader.getInstance().displayImage(url, detail_question,
                             ImageLoadOptions.getOptions());
                 }
-                //Tool.alert(QuestionItemActivityElinc.this,"查询成功");
+                //Tool.alert(BookItemActivityElinc.this,"查询成功");
             }
 
             @Override
             public void onFailure(int code, String msg) {
                 // TODO Auto-generated method stub
-                Tool.alert(QuestionItemActivityElinc.this, "查询失败：" + msg);
+                Tool.alert(BookItemActivityElinc.this, "查询失败：" + msg);
             }
         });
     }
@@ -257,7 +257,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         bmobQuery.include("responder,questionId");
         bmobQuery.setLimit(pageCapacity);
         bmobQuery.order("createdAt");
-        bmobQuery.findObjects(QuestionItemActivityElinc.this, new FindListener<Answer>() {
+        bmobQuery.findObjects(BookItemActivityElinc.this, new FindListener<Answer>() {
             @Override
             public void onSuccess(List<Answer> list) {
                 if (list.size() < pageCapacity) {
@@ -289,7 +289,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
 
             @Override
             public void onError(int i, String s) {
-                Tool.alert(QuestionItemActivityElinc.this, "提交失败，请检查网络");
+                Tool.alert(BookItemActivityElinc.this, "提交失败，请检查网络");
             }
         });
     }
@@ -304,7 +304,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         curPage++;
         bmobQuery.setLimit(pageCapacity);
         bmobQuery.order("-createdAt");
-        bmobQuery.findObjects(QuestionItemActivityElinc.this, new FindListener<Answer>() {
+        bmobQuery.findObjects(BookItemActivityElinc.this, new FindListener<Answer>() {
             @Override
             public void onSuccess(List<Answer> list) {
                 // TODO Auto-generated method stub
@@ -353,7 +353,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         bmobQuery.include("questionId,responder");
         bmobQuery.setLimit(pageCapacity);
         bmobQuery.order("-createdAt");
-        bmobQuery.findObjects(QuestionItemActivityElinc.this, new FindListener<Answer>() {
+        bmobQuery.findObjects(BookItemActivityElinc.this, new FindListener<Answer>() {
             @Override
             public void onSuccess(List<Answer> arg0) {
                 // TODO Auto-generated method stub
@@ -398,7 +398,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         BmobQuery<Book> query2 = new BmobQuery<Book>();
         Book q=new Book();
         q.setObjectId(book.getObjectId());
-        User u=BmobUser.getCurrentUser(QuestionItemActivityElinc.this, User.class);
+        User u=BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
         query1.addWhereEqualTo("objectId", q.getObjectId());
         query2.addWhereRelatedTo("follow", new BmobPointer(u));
         List<BmobQuery<Book>> queries = new ArrayList<BmobQuery<Book>>();
@@ -406,12 +406,12 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         queries.add(query2);
         BmobQuery<Book> mainQuery = new BmobQuery<Book>();
         mainQuery.and(queries);
-        mainQuery.count(QuestionItemActivityElinc.this, Book.class, new CountListener() {
+        mainQuery.count(BookItemActivityElinc.this, Book.class, new CountListener() {
             @Override
             public void onSuccess(int i) {
                 Book book = new Book();
                 book.setObjectId(bundle.getString("questionId"));
-                User user = BmobUser.getCurrentUser(QuestionItemActivityElinc.this, User.class);
+                User user = BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
                 User u = new User();
                 u.setObjectId(user.getObjectId());
 
@@ -419,40 +419,40 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
                     BmobRelation relation = new BmobRelation();
                     relation.remove(book);
                     u.setFollow(relation);
-                    u.update(QuestionItemActivityElinc.this, new UpdateListener() {
+                    u.update(BookItemActivityElinc.this, new UpdateListener() {
                         @Override
                         public void onSuccess() {
                             // TODO Auto-generated method stub
                             refreshButton();
                             Log.i("life", "多对多关联添加成功");
-                            //Tool.alert(QuestionItemActivityElinc.this, "取消收藏");
+                            //Tool.alert(BookItemActivityElinc.this, "取消收藏");
                         }
 
                         @Override
                         public void onFailure(int arg0, String arg1) {
                             // TODO Auto-generated method stub
                             Log.i("life", "多对多关联添加失败");
-                            Tool.alert(QuestionItemActivityElinc.this, "取消收藏失败，请检查网络");
+                            Tool.alert(BookItemActivityElinc.this, "取消收藏失败，请检查网络");
                         }
                     });
                 } else {
                     BmobRelation relation = new BmobRelation();
                     relation.add(book);
                     u.setFollow(relation);
-                    u.update(QuestionItemActivityElinc.this, new UpdateListener() {
+                    u.update(BookItemActivityElinc.this, new UpdateListener() {
                         @Override
                         public void onSuccess() {
                             // TODO Auto-generated method stub
                             refreshButton();
                             Log.i("life", "多对多关联添加成功");
-                            //Tool.alert(QuestionItemActivityElinc.this, "收藏成功");
+                            //Tool.alert(BookItemActivityElinc.this, "收藏成功");
                         }
 
                         @Override
                         public void onFailure(int arg0, String arg1) {
                             // TODO Auto-generated method stub
                             Log.i("life", "多对多关联添加失败");
-                            Tool.alert(QuestionItemActivityElinc.this, "收藏失败，请检查网络");
+                            Tool.alert(BookItemActivityElinc.this, "收藏失败，请检查网络");
                         }
                     });
                 }
@@ -474,7 +474,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         Book book =new Book();
         book.setObjectId( bundle.getString("questionId"));
         book.increment("numberOfAnswer");
-        book.update(QuestionItemActivityElinc.this, new UpdateListener() {
+        book.update(BookItemActivityElinc.this, new UpdateListener() {
             @Override
             public void onSuccess() {
 
@@ -488,11 +488,11 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         new_answer.setAnswerContent(a);
         new_answer.setBookId(book);
         new_answer.setResponder(user);
-        //Tool.alert(QuestionItemActivityElinc.this, a);
-        new_answer.save(QuestionItemActivityElinc.this, new SaveListener() {
+        //Tool.alert(BookItemActivityElinc.this, a);
+        new_answer.save(BookItemActivityElinc.this, new SaveListener() {
             @Override
             public void onSuccess() {
-                Tool.alert(QuestionItemActivityElinc.this, "提交成功");
+                Tool.alert(BookItemActivityElinc.this, "提交成功");
                 BmobLog.i("Json测试", user.getUsername());
                 BmobLog.i("Json测试", CreatJsonMsgInString(author_name, user.getUsername(), bundle.getString("questionId")));
                 manager.sendJsonMessage(CreatJsonMsgInString(author_name, user.getUsername(), bundle.getString("questionId")), author.getObjectId());
@@ -502,7 +502,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
 
             @Override
             public void onFailure(int i, String s) {
-                Tool.alert(QuestionItemActivityElinc.this, "提交失败，请检查网络");
+                Tool.alert(BookItemActivityElinc.this, "提交失败，请检查网络");
             }
         });
     }
@@ -597,7 +597,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
             @Override
             public void onSuccess() {
                 // TODO Auto-generated method stub
-                String url = bmobFile.getFileUrl(QuestionItemActivityElinc.this);
+                String url = bmobFile.getFileUrl(BookItemActivityElinc.this);
                 //ShowToast(url);
                 if (url != null) {
                     new_answer.setAnswerAvatar(url);
@@ -667,7 +667,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
     public void openUserDetail(){
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        User u= BmobUser.getCurrentUser(QuestionItemActivityElinc.this, User.class);
+        User u= BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
         if(author_name!="" && author_name!=null){
             bundle.putString("username", author_name);
             if(author_name.equals(u.getUsername().toString())){
@@ -677,15 +677,15 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
             }
         }
         intent.putExtras(bundle);
-        intent.setClass(QuestionItemActivityElinc.this, SetMyInfoActivity.class);
-        QuestionItemActivityElinc.this.startActivity(intent);
+        intent.setClass(BookItemActivityElinc.this, SetMyInfoActivity.class);
+        BookItemActivityElinc.this.startActivity(intent);
     }
     public void refreshButton(){
         BmobQuery<Book> query1 = new BmobQuery<Book>();
         BmobQuery<Book> query2 = new BmobQuery<Book>();
         Book q=new Book();
         q.setObjectId(book.getObjectId());
-        User u=BmobUser.getCurrentUser(QuestionItemActivityElinc.this, User.class);
+        User u=BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
         query1.addWhereEqualTo("objectId", q.getObjectId());
         query2.addWhereRelatedTo("follow", new BmobPointer(u));
         List<BmobQuery<Book>> queries = new ArrayList<BmobQuery<Book>>();
@@ -693,7 +693,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
         queries.add(query2);
         BmobQuery<Book> mainQuery = new BmobQuery<Book>();
         mainQuery.and(queries);
-        mainQuery.count(QuestionItemActivityElinc.this, Book.class, new CountListener() {
+        mainQuery.count(BookItemActivityElinc.this, Book.class, new CountListener() {
             @Override
             public void onSuccess(int i) {
                 if (i == 1) {
@@ -803,7 +803,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
     }
 
     public void upload(String path) {
-        BmobProFile.getInstance(QuestionItemActivityElinc.this).getLocalThumbnail(path,1, new LocalThumbnailListener() {
+        BmobProFile.getInstance(BookItemActivityElinc.this).getLocalThumbnail(path,1, new LocalThumbnailListener() {
 
             @Override
             public void onError(int statuscode, String errormsg) {
@@ -815,7 +815,7 @@ public class QuestionItemActivityElinc extends ActivityBase  implements View.OnC
             public void onSuccess(String thumbnailPath) {
                 // TODO Auto-generated method stub
                 Log.i("bmob","本地缩略图创建成功  :"+thumbnailPath);
-                BTPFileResponse response = BmobProFile.getInstance(QuestionItemActivityElinc.this).upload(thumbnailPath, new UploadListener() {
+                BTPFileResponse response = BmobProFile.getInstance(BookItemActivityElinc.this).upload(thumbnailPath, new UploadListener() {
                     @Override
                     public void onSuccess(String fileName, String url, BmobFile file) {
                         ShowToast("图片上传中，请稍后");

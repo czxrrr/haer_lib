@@ -1,6 +1,6 @@
 
 /*
-public class FindQuestion extends AppCompatActivity {
+public class FindBook extends AppCompatActivity {
 
 
 }*/
@@ -35,7 +35,7 @@ package com.elinc.im.haer.ui;
  * @author smile
  * @date 2014-6-5 下午5:26:41
  */
-public class FindQuestion extends ActivityBase implements View.OnClickListener,XListView.IXListViewListener,AdapterView.OnItemClickListener {
+public class FindBook extends ActivityBase implements View.OnClickListener,XListView.IXListViewListener,AdapterView.OnItemClickListener {
     private EditText et_search_question;
     private List<Book> book = new ArrayList<Book>();
     private XListView mListView;
@@ -47,7 +47,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_question);
+        setContentView(R.layout.activity_find_book);
         initView();
     }
 
@@ -67,7 +67,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         mListView.setXListViewListener(this);
         mListView.pullRefreshing();
         mListView.setDividerHeight(2);
-        adapter = new QuestionListAdapter(FindQuestion.this, book);
+        adapter = new QuestionListAdapter(FindBook.this, book);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(this);
     }
@@ -75,7 +75,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
 
     private void initSearchList(final boolean isUpdate){
         if(!isUpdate){
-            progress = new ProgressDialog(FindQuestion.this);
+            progress = new ProgressDialog(FindBook.this);
             progress.setMessage("正在搜索...");
             progress.setCanceledOnTouchOutside(true);
             progress.show();
@@ -95,7 +95,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         mainQuery.order("-createdAt");
         mainQuery.include("author");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Book>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
             public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
@@ -163,7 +163,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Book>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
             public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
@@ -195,7 +195,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         String questionId = book.get(position-1).getObjectId();
         bundle.putString("questionId", questionId);
         intent.putExtras(bundle);
-        intent.setClass(FindQuestion.this, QuestionItemActivityElinc.class);
+        intent.setClass(FindBook.this, BookItemActivityElinc.class);
         startAnimActivity(intent);
     }
 
@@ -242,7 +242,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Book>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
             public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
@@ -282,7 +282,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         allQuery.include("author");
         allQuery.setLimit(pageCapacity);
         allQuery.order("-createdAt");
-        allQuery.findObjects(FindQuestion.this, new FindListener<Book>() {
+        allQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
             public void onSuccess(List<Book> list) {
                 if (CollectionUtils.isNotNull(list)) {
@@ -334,7 +334,7 @@ public class FindQuestion extends ActivityBase implements View.OnClickListener,X
         mainQuery.order("-createdAt");
         mainQuery.include("author");
         mainQuery.or(queries);
-        mainQuery.findObjects(FindQuestion.this, new FindListener<Book>() {
+        mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
             public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {

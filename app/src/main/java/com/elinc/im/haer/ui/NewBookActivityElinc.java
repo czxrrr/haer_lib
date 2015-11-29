@@ -54,7 +54,7 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
-public class NewQuestionActivityElinc extends ActivityBase {
+public class NewBookActivityElinc extends ActivityBase {
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
     private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
 
@@ -76,20 +76,20 @@ public class NewQuestionActivityElinc extends ActivityBase {
     EditText questionTitle;
     List<String> tags;
     EditText et_input_tags;
-    BmobUserManager userManager = BmobUserManager.getInstance(NewQuestionActivityElinc.this);
+    BmobUserManager userManager = BmobUserManager.getInstance(NewBookActivityElinc.this);
     LinearLayout layout_all_of_new_question;
     ImageView iv_set_question_avatar; //显示上传的图片
-    Book new_book;  //这个是需要save 的新question
+    Book new_book;  //这个是需要save 的新book
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_question_elinc);
+        setContentView(R.layout.activity_new_book);
         init();
         initTagButton();
         initListener();
     }
     private void init(){
-        initTopBarForLeft("新问题");
+        initTopBarForLeft("新书捐赠");
         userManager.init(this);
         questionContent = (EditText)findViewById(R.id.question_content);
         questionTitle= (EditText) findViewById(R.id.question_title);
@@ -105,9 +105,9 @@ public class NewQuestionActivityElinc extends ActivityBase {
             public void onClick(View v) {
                 String a = et_input_tags.getText().toString();
                 if (!a.equals("") && a!=null) {
-                    a = a + ",美食";
+                    a = a + ",课本";
                 } else {
-                    a = "美食";
+                    a = "课本";
                 }
                 et_input_tags.setText(a);
             }
@@ -117,8 +117,8 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onClick(View v) {
                 String a=et_input_tags.getText().toString();
-                if(!a.equals("") && a!=null){a=a+",娱乐";}
-                else{a="娱乐";}
+                if(!a.equals("") && a!=null){a=a+",计算机";}
+                else{a="计算机";}
                 et_input_tags.setText(a);
             }
         });
@@ -127,10 +127,10 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onClick(View v) {
                 String a=et_input_tags.getText().toString();
-                //Tool.alert(NewQuestionActivityElinc.this,a);
+                //Tool.alert(NewBookActivityElinc.this,a);
                 System.out.println(a);
-                if(!a.equals("") && a!=null){a=a+",学习";}
-                else{a="学习";}
+                if(!a.equals("") && a!=null){a=a+",英语";}
+                else{a="英语";}
                 et_input_tags.setText(a);
             }
         });       
@@ -139,8 +139,8 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onClick(View v) {
                 String a=et_input_tags.getText().toString();
-                if(!a.equals("") && a!=null){a=a+",旅行";}
-                else{a="旅行";}
+                if(!a.equals("") && a!=null){a=a+",小说";}
+                else{a="小说";}
                 et_input_tags.setText(a);
             }
         });
@@ -175,35 +175,34 @@ public class NewQuestionActivityElinc extends ActivityBase {
     }
     public void AddQuestion(String title,String questionContent){
         new_book.setTags(tags);
-        new_book.setQuestionContent(questionContent);
+        new_book.setIntro(questionContent);
         new_book.setTitle(title);
-        new_book.setNumberOfAnswer(0);
-        new_book.setAuthor(BmobUser.getCurrentUser(this, User.class));
-        new_book.save(NewQuestionActivityElinc.this, new SaveListener() {
+        new_book.setSubmiter(BmobUser.getCurrentUser(this, User.class));
+        new_book.save(NewBookActivityElinc.this, new SaveListener() {
             @Override
             public void onSuccess() {
                 // TODO Auto-generated method stub
                 String id = new_book.getObjectId();
-                Tool.alert(NewQuestionActivityElinc.this, "提问成功，请静候答案");
-                User user = BmobUser.getCurrentUser(NewQuestionActivityElinc.this, User.class);
+                Tool.alert(NewBookActivityElinc.this, "捐赠成功，谢谢您的付出");
+                User user = BmobUser.getCurrentUser(NewBookActivityElinc.this, User.class);
                 BmobRelation relation = new BmobRelation();
                 Book q = new Book();
                 q.setObjectId(id);
                 relation.add(q);
                 user.setFollow(relation);
-                user.update(NewQuestionActivityElinc.this, new UpdateListener() {
+                user.update(NewBookActivityElinc.this, new UpdateListener() {
                     @Override
                     public void onSuccess() {
                         // TODO Auto-generated method stub
                         //Log.i("life", "多对多关联添加成功");
-                        //Tool.alert(NewQuestionActivityElinc.this, "收藏成功");
+                        //Tool.alert(NewBookActivityElinc.this, "收藏成功");
                     }
 
                     @Override
                     public void onFailure(int arg0, String arg1) {
                         // TODO Auto-generated method stub
                         // Log.i("life", "多对多关联添加失败");
-                        //Tool.alert(NewQuestionActivityElinc.this, "提交失败，请检查网络");
+                        //Tool.alert(NewBookActivityElinc.this, "提交失败，请检查网络");
                     }
                 });
                 finish();
@@ -212,7 +211,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onFailure(int code, String arg0) {
                 // TODO Auto-generated method stub
-                Tool.alert(NewQuestionActivityElinc.this, "提问失败，请查看网络状态");
+                Tool.alert(NewBookActivityElinc.this, "提问失败，请查看网络状态");
             }
         });
     }
@@ -334,10 +333,10 @@ public class NewQuestionActivityElinc extends ActivityBase {
             @Override
             public void onSuccess() {
                 // TODO Auto-generated method stub
-                String url = bmobFile.getFileUrl(NewQuestionActivityElinc.this);
+                String url = bmobFile.getFileUrl(NewBookActivityElinc.this);
                 // ShowToast(url);
                 if (url != null) {
-                    new_book.setQuestionAvatar(url);
+                    new_book.setBookAvatar(url);
                 }
             }
 
@@ -356,7 +355,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
     }
 
     private void updateQuestionAvatar(String url) {
-        new_book.setQuestionAvatar(url);
+        new_book.setBookAvatar(url);
     }
 
 
@@ -486,7 +485,7 @@ public class NewQuestionActivityElinc extends ActivityBase {
     }
 
     public void upload(String path) {
-        BmobProFile.getInstance(NewQuestionActivityElinc.this).getLocalThumbnail(path,1, new LocalThumbnailListener() {
+        BmobProFile.getInstance(NewBookActivityElinc.this).getLocalThumbnail(path,1, new LocalThumbnailListener() {
 
             @Override
             public void onError(int statuscode, String errormsg) {
@@ -498,11 +497,11 @@ public class NewQuestionActivityElinc extends ActivityBase {
             public void onSuccess(String thumbnailPath) {
                 // TODO Auto-generated method stub
                 Log.i("bmob","本地缩略图创建成功  :"+thumbnailPath);
-                BTPFileResponse response = BmobProFile.getInstance(NewQuestionActivityElinc.this).upload(thumbnailPath, new UploadListener() {
+                BTPFileResponse response = BmobProFile.getInstance(NewBookActivityElinc.this).upload(thumbnailPath, new UploadListener() {
                     @Override
                     public void onSuccess(String fileName, String url, BmobFile file) {
                         Log.i("bmob", "文件上传成功：" + fileName + ",可访问的文件地址：" + file.getUrl());
-                        new_book.setQuestionAvatar(file.getUrl());
+                        new_book.setBookAvatar(file.getUrl());
                         iv_set_question_avatar.setVisibility(View.VISIBLE);
                         ImageLoader.getInstance().displayImage(file.getUrl(), iv_set_question_avatar, ImageLoadOptions.getOptions(), animateFirstListener);
                     }

@@ -20,7 +20,7 @@ import com.elinc.im.haer.R;
 import com.elinc.im.haer.adapter.QuestionListAdapter;
 import com.elinc.im.haer.bean.Book;
 import com.elinc.im.haer.ui.FragmentBase;
-import com.elinc.im.haer.ui.QuestionItemActivityElinc;
+import com.elinc.im.haer.ui.BookItemActivityElinc;
 import com.elinc.im.haer.util.CollectionUtils;
 import com.elinc.im.haer.view.xlist.XListView;
 import com.elinc.im.haer.view.xlist.XListView.IXListViewListener;
@@ -46,7 +46,7 @@ public class QuestionFragment extends FragmentBase implements OnClickListener,IX
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_question, container, false);
+        View view = inflater.inflate(R.layout.fragment_book, container, false);
         return view;
     }
     @Override
@@ -75,7 +75,7 @@ public class QuestionFragment extends FragmentBase implements OnClickListener,IX
         String questionId = book.get(position-1).getObjectId();
         bundle.putString("questionId", questionId);
         intent.putExtras(bundle);
-        intent.setClass(getActivity(), QuestionItemActivityElinc.class);
+        intent.setClass(getActivity(), BookItemActivityElinc.class);
         startAnimActivity(intent);
     }
 

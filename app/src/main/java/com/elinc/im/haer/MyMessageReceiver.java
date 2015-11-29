@@ -26,9 +26,9 @@ import cn.bmob.im.util.BmobJsonUtil;
 import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.listener.FindListener;
 
+import com.elinc.im.haer.ui.BookItemActivityElinc;
 import com.elinc.im.haer.ui.MainActivity;
 import com.elinc.im.haer.ui.NewFriendActivity;
-import com.elinc.im.haer.ui.QuestionItemActivityElinc;
 import com.elinc.im.haer.util.CollectionUtils;
 import com.elinc.im.haer.util.CommonUtils;
 
@@ -194,7 +194,7 @@ public class MyMessageReceiver extends BroadcastReceiver {
 				//BmobLog.i("Json中的current_user_name",currentUser.getUsername());
 				if (jo.getString("author_name").equals(currentUser.getUsername())) {
 					//BmobLog.i("到此显示Notification","");
-					showOtherNotify(context,jo.getString("answerer_name"),currentUser.getObjectId(),jo.getString("questionId"),"回答了您的问题",QuestionItemActivityElinc.class);
+					showOtherNotify(context,jo.getString("answerer_name"),currentUser.getObjectId(),jo.getString("questionId"),"回答了您的问题",BookItemActivityElinc.class);
 				}
 			}catch (JSONException e1) {
 

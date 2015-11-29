@@ -41,6 +41,7 @@ public class Book extends BmobObject {
 
     public void setSubmiter(User submiter) {
         this.submiter = submiter;
+        this.onwer=submiter;
     }
 
     public List<String> getTags() {
