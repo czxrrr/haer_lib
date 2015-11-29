@@ -48,7 +48,7 @@
                 android:visibility="invisible" />
         </RelativeLayout>
 
-        <com.hasi.haer_lib.view.MyLetterView
+        <com.elinc.im.haer.view.MyLetterView
             android:id="@+id/right_letter"
             android:layout_width="25dip"
             android:layout_height="match_parent"

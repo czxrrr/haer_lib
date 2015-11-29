@@ -35,18 +35,3 @@ dependencies {
     compile files('libs/BmobIM_V1.1.9beta_20150820.jar')
     compile 'com.android.support:recyclerview-v7:23.0.0'
 }
-
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
-    }
-}
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-}

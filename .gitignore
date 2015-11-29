@@ -12,6 +12,11 @@
 bin/
 gen/
 
+#idea files
+.idea/
+#iml files
+*.iml
+
 # Gradle files
 .gradle/
 build/
@@ -25,5 +30,4 @@ proguard/
 
 # Log Files
 *.log
-
-app/.idea/
+app/src/main/res/drawable-hdpi/list_newmessage2.9.png

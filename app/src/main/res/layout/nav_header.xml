@@ -10,7 +10,7 @@
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-    <com.hasi.haer_lib.view.CircleImageView
+    <com.elinc.im.haer.view.CircleImageView
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:layout_width="80dp"

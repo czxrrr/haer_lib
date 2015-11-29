@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:elevation="0dp"
-    tools:context="com.hasi.haer_lib.ui.fragment.CardFragment">
+    tools:context="com.elinc.im.haer.ui.fragment.CardFragment">
     <!--  list View -->
     <ScrollView
         android:elevation="0dp"

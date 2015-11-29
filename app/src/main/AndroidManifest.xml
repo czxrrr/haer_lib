@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hasi.haer_lib"
+    package="com.elinc.im.haer"
     android:versionCode="6"
     android:versionName="1.0.1" >
 
@@ -67,14 +67,14 @@
 
     <!-- baidumap 所需的权限 -end -->
     <application
-        android:name="com.hasi.haer_lib.CustomApplcation"
+        android:name="com.elinc.im.haer.CustomApplcation"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.DesignDemo">
                         <!--"@style/Theme.DesignDemo"-->
         <activity
-            android:name="com.hasi.haer_lib.ui.SplashActivity"
+            android:name="com.elinc.im.haer.ui.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -83,26 +83,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.MainActivity"
+            android:name="com.elinc.im.haer.ui.MainActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name="com.hasi.haer_lib.ui.LoginActivityElinc"
+        <activity android:name="com.elinc.im.haer.ui.LoginActivityElinc"
             android:launchMode="singleTop"/>
-        <activity android:name="com.hasi.haer_lib.ui.LocationActivity" />
-        <activity android:name="com.hasi.haer_lib.ui.BlackListActivity" />
-        <activity android:name="com.hasi.haer_lib.ui.ImageBrowserActivity" />
+        <activity android:name="com.elinc.im.haer.ui.LocationActivity" />
+        <activity android:name="com.elinc.im.haer.ui.BlackListActivity" />
+        <activity android:name="com.elinc.im.haer.ui.ImageBrowserActivity" />
         <activity
-            android:name="com.hasi.haer_lib.ui.AddFriendActivity"
+            android:name="com.elinc.im.haer.ui.AddFriendActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name="com.hasi.haer_lib.ui.NewFriendActivity" />
-        <activity android:name="com.hasi.haer_lib.ui.NearPeopleActivity" />
-        <activity android:name="com.hasi.haer_lib.ui.UpdateInfoActivityElinc" />
+        <activity android:name="com.elinc.im.haer.ui.NewFriendActivity" />
+        <activity android:name="com.elinc.im.haer.ui.NearPeopleActivity" />
+        <activity android:name="com.elinc.im.haer.ui.UpdateInfoActivityElinc" />
         <activity
-            android:name="com.hasi.haer_lib.ui.ChatActivity"
+            android:name="com.elinc.im.haer.ui.ChatActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
-        <activity android:name="com.hasi.haer_lib.ui.SetMyInfoActivity" />
+        <activity android:name="com.elinc.im.haer.ui.SetMyInfoActivity" />
         <activity
-            android:name="com.hasi.haer_lib.ui.RegisterActivityElinc"
+            android:name="com.elinc.im.haer.ui.RegisterActivityElinc"
             android:label="@string/app_name" />
 
         <!-- 更新 -->
@@ -147,7 +147,7 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.hasi.haer_lib.MyMessageReceiver" >
+        <receiver android:name="com.elinc.im.haer.MyMessageReceiver" >
             <intent-filter>
                 <action android:name="cn.bmob.push.action.MESSAGE" />
             </intent-filter>
@@ -164,27 +164,27 @@
         </service>
 
         <activity
-            android:name=".ui.NewBookActivityElinc"
+            android:name="com.elinc.im.haer.ui.NewQuestionActivityElinc"
             android:label="@string/title_activity_new_question" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.QuestionItemActivityElinc"
+            android:name="com.elinc.im.haer.ui.QuestionItemActivityElinc"
             android:label="QuestionItemActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
-            android:name="com.hasi.haer_lib.ui.SettingActivity"
+            android:name="com.elinc.im.haer.ui.SettingActivity"
             android:label="@string/title_activity_setting" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.RecentActivity"
+            android:name="com.elinc.im.haer.ui.RecentActivity"
             android:label="@string/title_activity_recent" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.FirstUpdateInfoElinc"
+            android:name="com.elinc.im.haer.ui.FirstUpdateInfoElinc"
             android:label="@string/title_activity_first_update_info" >
         </activity>
 
-        <receiver android:name="com.hasi.haer_lib.view.CircleImageView" >
+        <receiver android:name="com.elinc.im.haer.view.CircleImageView" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -195,43 +195,43 @@
         </receiver>
 
         <activity
-            android:name="com.hasi.haer_lib.ui.AboutUsActivityElinc"
+            android:name="com.elinc.im.haer.ui.AboutUsActivityElinc"
             android:label="@string/title_activity_about_us_activity_elinc" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.BugReportActivityElinc"
+            android:name="com.elinc.im.haer.ui.BugReportActivityElinc"
             android:label="@string/title_activity_bug_report_activity_elinc" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.NewGoalActivityElinc"
+            android:name="com.elinc.im.haer.ui.NewGoalActivityElinc"
             android:label="@string/title_activity_new_aim_activity_elinc" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.MyFavoriteActivityElinc"
+            android:name="com.elinc.im.haer.ui.MyFavoriteActivityElinc"
             android:label="@string/title_activity_my_favorite_activity_elinc" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.MyGoalActivityElinc"
+            android:name="com.elinc.im.haer.ui.MyGoalActivityElinc"
             android:label="@string/title_activity_my_goal_activity_elinc" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.CardItemActivityElinc"
+            android:name="com.elinc.im.haer.ui.CardItemActivityElinc"
             android:label="@string/title_activity_card_item_activity_elinc" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.FindPassword"
+            android:name="com.elinc.im.haer.ui.FindPassword"
             android:label="@string/title_activity_find_password" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.PicDragZoomActivityElinc"
+            android:name="com.elinc.im.haer.ui.PicDragZoomActivityElinc"
             android:label="@string/title_activity_pic_drag_zoom_activity_elinc" >
         </activity>
         <activity
-            android:name=".ui.FindBook"
+            android:name="com.elinc.im.haer.ui.FindQuestion"
             android:label="@string/title_activity_find_question" >
         </activity>
         <activity
-            android:name="com.hasi.haer_lib.ui.MyTreeActivity"
+            android:name="com.elinc.im.haer.ui.MyTreeActivity"
             android:label="@string/title_activity_my_tree" >
         </activity>
     </application>

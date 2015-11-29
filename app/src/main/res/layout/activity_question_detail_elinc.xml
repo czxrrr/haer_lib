@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
-            <com.hasi.haer_lib.view.CircleImageView
+            <com.elinc.im.haer.view.CircleImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="10dp"
@@ -160,7 +160,7 @@
     </LinearLayout>
 
 
-        <com.hasi.haer_lib.view.xlist.XListView
+        <com.elinc.im.haer.view.xlist.XListView
             android:id="@+id/list_answer_e"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
