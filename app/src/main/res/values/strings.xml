@@ -109,4 +109,6 @@
         <item>舟山校区</item>
         <item>华家池校区</item>
     </string-array>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_rent_book">RentBook</string>
 </resources>

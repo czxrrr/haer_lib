@@ -91,7 +91,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
     LinearLayout layout_all_of_question_detail;
     TextView author_in_question_list;
     ImageView avatar_for_author_in_question_list;
-    TextView question_date_in_question_list;
+    TextView question_date_in_question_list,apply;
     String author_name;
     Book book;
     ImageButton follow;
@@ -167,6 +167,26 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
         new_answer=new Answer();
         layout_all_of_question_detail= (LinearLayout) findViewById(R.id.layout_all_of_question_detail);
         /*点击按钮收藏*/
+        apply= (TextView) findViewById(R.id.apply);
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                User u= BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
+//                if(author_name!="" && author_name!=null){
+//                    bundle.putString("username", author_name);
+//                    if(author_name.equals(u.getUsername().toString())){
+//                        bundle.putString("from", "me");
+//                    }else{
+//                        bundle.putString("from", "add");
+//                    }
+//                }
+                intent.putExtras(bundle);
+                intent.setClass(BookItemActivityElinc.this, RentBook.class);
+                BookItemActivityElinc.this.startActivity(intent);
+            }
+        });
         follow= (ImageButton) findViewById(R.id.follow);
 
         follow.setOnClickListener(new View.OnClickListener() {
@@ -388,8 +408,8 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
 
 
     public void followQustion(){
-        /*此方法不需要传参数，只能被QustionItemActivity的关注按钮的毁掉函数调用
-        * 会自动从bundle 里面获取本question的Id 进行关注
+        /*此方法不需要传参数，只能被BookItemActivity的关注按钮的毁掉函数调用
+        * 会自动从bundle 里面获取本book的Id 进行关注
         * 从而用户的关注里面会多一个问题
         *
         *                           czr

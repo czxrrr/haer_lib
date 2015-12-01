@@ -70,7 +70,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 	private LinearLayout layout_all;
 
 	private Button btn_chat, btn_black, btn_add_friend;
-	private RelativeLayout layout_head, layout_nick, layout_goal,layout_black_tips;
+	private RelativeLayout layout_head, layout_nick,layout_black_tips;
 	private String objectId = "";
 	private String avatar = "";
 	private String from = "";
@@ -102,21 +102,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 		tv_set_nick = (TextView) findViewById(R.id.tv_set_nick);
 		layout_head = (RelativeLayout) findViewById(R.id.layout_head);
 		layout_nick = (RelativeLayout) findViewById(R.id.layout_nick);
-		layout_goal = (RelativeLayout) findViewById(R.id.layout_goal);
-		layout_goal.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent();
-				Bundle bundle = new Bundle();
-				bundle.putString("username", username);
-				bundle.putString("objectId", objectId);
-				bundle.putString("avatar", avatar);
-				bundle.putString("signature",signature);
-				intent.putExtras(bundle);
-				intent.setClass(SetMyInfoActivity.this, MyTreeActivity.class);
-				startActivity(intent);
-			}
-		});
+		
 		layout_black_tips = (RelativeLayout) findViewById(R.id.layout_black_tips);
 		tv_set_gender = (TextView) findViewById(R.id.tv_set_gender);
 		tv_set_goal = (TextView) findViewById(R.id.tv_set_goal);

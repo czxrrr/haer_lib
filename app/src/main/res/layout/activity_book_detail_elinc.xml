@@ -142,10 +142,10 @@
 
             <TextView
                 android:layout_alignParentRight="true"
-                android:id="@+id/question_number_of_answer"
-                android:layout_width="30dp"
+                android:id="@+id/apply"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="申请借阅此书"
                 android:textColor="#ffffff"
                 android:gravity="center"
                 android:layout_alignParentBottom="true"
