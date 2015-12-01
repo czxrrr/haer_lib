@@ -28,10 +28,10 @@ import com.elinc.im.haer.view.xlist.XListView.IXListViewListener;
 /** 添加好友
  * @ClassName: SearchQuestion
  * @Description: TODO
- * @author smile
+ * @owner smile
  * @date 2014-6-5 下午5:26:41
  */
-public class QuestionFragment extends FragmentBase implements OnClickListener,IXListViewListener,OnItemClickListener{
+public class BookFragment extends FragmentBase implements OnClickListener,IXListViewListener,OnItemClickListener{
     List<Book> book = new ArrayList<Book>();
     XListView mListView;
     QuestionListAdapter adapter;
@@ -102,7 +102,7 @@ public class QuestionFragment extends FragmentBase implements OnClickListener,IX
         mainQuery.setSkip((curPage + 1) * pageCapacity);
         curPage++;
         mainQuery.setLimit(pageCapacity);
-        mainQuery.include("author");
+        mainQuery.include("owner");
         mainQuery.order("-createdAt");
         mainQuery.findObjects(getActivity(), new FindListener<Book>() {
             @Override
@@ -141,7 +141,7 @@ public class QuestionFragment extends FragmentBase implements OnClickListener,IX
 
     public void initData () {
         BmobQuery<Book> allQuery = new BmobQuery<Book>();
-        allQuery.include("author");
+        allQuery.include("owner");
         allQuery.order("-createdAt");
         allQuery.setLimit(pageCapacity);
         allQuery.findObjects(getActivity(), new FindListener<Book>() {
@@ -189,7 +189,7 @@ public class QuestionFragment extends FragmentBase implements OnClickListener,IX
     private void refreshList(){
         curPage =0;
         BmobQuery<Book> mainQuery = new BmobQuery<Book>();
-        mainQuery.include("author");
+        mainQuery.include("owner");
         mainQuery.order("-createdAt");
         mainQuery.setLimit(pageCapacity);
         mainQuery.findObjects(getActivity(), new FindListener<Book>() {

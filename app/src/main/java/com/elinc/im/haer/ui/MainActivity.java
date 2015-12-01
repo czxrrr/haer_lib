@@ -33,9 +33,9 @@ import com.elinc.im.haer.MyMessageReceiver;
 import com.elinc.im.haer.R;
 import com.elinc.im.haer.bean.ActivityCollection;
 import com.elinc.im.haer.bean.User;
-import com.elinc.im.haer.ui.fragment.CardFragment;
+import com.elinc.im.haer.ui.fragment.UserFragment;
 import com.elinc.im.haer.ui.fragment.ContactFragment;
-import com.elinc.im.haer.ui.fragment.QuestionFragment;
+import com.elinc.im.haer.ui.fragment.BookFragment;
 import com.elinc.im.haer.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -51,7 +51,6 @@ import cn.bmob.im.config.BmobConfig;
 import cn.bmob.im.db.BmobDB;
 import cn.bmob.im.inteface.EventListener;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.BmobUpdateListener;
 import cn.bmob.v3.listener.GetListener;
 import cn.bmob.v3.update.BmobUpdateAgent;
@@ -66,9 +65,9 @@ import cn.bmob.v3.update.UpdateStatus;
  * date 2014-5-29 下午2:45:35
  */
 public class MainActivity extends ActivityBase implements EventListener{
-	private CardFragment cardFragment;
+	private UserFragment userFragment;
 	private ContactFragment contactFragment;
-	private QuestionFragment questionFragment;
+	private BookFragment bookFragment;
 	private DrawerLayout mDrawerLayout;
 	private User me;
 	int currentTabIndex;
@@ -347,10 +346,10 @@ public class MainActivity extends ActivityBase implements EventListener{
 	}
 
 	private void setupViewPager(ViewPager viewPager) {
-		cardFragment = new CardFragment();
+		userFragment = new UserFragment();
 		contactFragment = new ContactFragment();
-		questionFragment = new QuestionFragment();
-		Fragment[] fragments = new Fragment[]{ questionFragment,contactFragment,cardFragment};
+		bookFragment = new BookFragment();
+		Fragment[] fragments = new Fragment[]{bookFragment,contactFragment, userFragment};
 		Adapter adapter = new Adapter(getSupportFragmentManager());
 		adapter.addFragment(fragments[0], "图书馆");
 		adapter.addFragment(fragments[1], "书友");

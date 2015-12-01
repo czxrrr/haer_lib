@@ -12,17 +12,18 @@ public class Book extends BmobObject {
     private String title;
     private String intro;
     private User submiter;
-    private User onwer;
+    private User owner;
     private List<String> tags;
     private String bookAvatar;
     private BmobRelation answerList;
+    private Boolean available;
 
-    public User getOnwer() {
-        return onwer;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setOnwer(User onwer) {
-        this.onwer = onwer;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     private BmobRelation followerList;
@@ -41,7 +42,7 @@ public class Book extends BmobObject {
 
     public void setSubmiter(User submiter) {
         this.submiter = submiter;
-        this.onwer=submiter;
+        this.owner=submiter;
     }
 
     public List<String> getTags() {
@@ -82,5 +83,13 @@ public class Book extends BmobObject {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }
