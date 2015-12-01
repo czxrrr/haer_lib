@@ -35,7 +35,7 @@
             <TextView
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="32dp"
-                android:text="提问"
+                android:text="捐赠书籍"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -55,7 +55,7 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:layout_marginLeft="32dp"
-                android:text="推荐学伴"
+                android:text="推荐书友"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -77,7 +77,7 @@
             <TextView
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="32dp"
-                android:text="添加学伴"
+                android:text="添加书友"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

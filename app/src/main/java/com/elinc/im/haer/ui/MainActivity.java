@@ -254,23 +254,23 @@ public class MainActivity extends ActivityBase implements EventListener{
                         case R.id.nav_settings:
                             startAnimActivity(SettingActivity.class);
                             break;
-                        case R.id.nav_my_tree:
-                            Intent intent = new Intent();
-                            Bundle bundle = new Bundle();
-                            User u= BmobUser.getCurrentUser(context, User.class);
-                            bundle.putString("username", u.getUsername());
-                            bundle.putString("signature",u.getSignature());
-                            bundle.putString("objectId",u.getObjectId());
-                            bundle.putString("avatar",u.getAvatar());
-                            if(u.getUsername().equals(u.getUsername())){
-                                bundle.putString("from", "me");
-                            }else{
-                                bundle.putString("from", "add");
-                            }
-                            intent.putExtras(bundle);
-                            intent.setClass(MainActivity.this, MyTreeActivity.class);
-                            startAnimActivity(intent);
-                            break;
+//                        case R.id.nav_my_tree:
+//                            Intent intent = new Intent();
+//                            Bundle bundle = new Bundle();
+//                            User u= BmobUser.getCurrentUser(context, User.class);
+//                            bundle.putString("username", u.getUsername());
+//                            bundle.putString("signature",u.getSignature());
+//                            bundle.putString("objectId",u.getObjectId());
+//                            bundle.putString("avatar",u.getAvatar());
+//                            if(u.getUsername().equals(u.getUsername())){
+//                                bundle.putString("from", "me");
+//                            }else{
+//                                bundle.putString("from", "add");
+//                            }
+//                            intent.putExtras(bundle);
+//                            intent.setClass(MainActivity.this, MyTreeActivity.class);
+//                            startAnimActivity(intent);
+//                            break;
                         case R.id.nav_messages:
                             startAnimActivity(MyFavoriteActivityElinc.class);
                             break;
