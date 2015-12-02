@@ -17,6 +17,15 @@ public class Book extends BmobObject {
     private String bookAvatar;
     private BmobRelation answerList;
     private Boolean available;
+    private Integer number_of_answer;
+
+    public Integer getNumberOfAnswer() {
+        return number_of_answer;
+    }
+
+    public void setNumberOfAnswer(Integer number_of_answer) {
+        this.number_of_answer = number_of_answer;
+    }
 
     public User getOwner() {
         return owner;

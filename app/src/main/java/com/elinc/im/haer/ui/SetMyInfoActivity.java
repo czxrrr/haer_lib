@@ -105,7 +105,6 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 		
 		layout_black_tips = (RelativeLayout) findViewById(R.id.layout_black_tips);
 		tv_set_gender = (TextView) findViewById(R.id.tv_set_gender);
-		tv_set_goal = (TextView) findViewById(R.id.tv_set_goal);
 		tv_set_campus = (TextView) findViewById(R.id.tv_set_campus);
 		tv_set_sign = (TextView) findViewById(R.id.tv_set_sign);
 		btn_chat = (Button) findViewById(R.id.btn_chat);

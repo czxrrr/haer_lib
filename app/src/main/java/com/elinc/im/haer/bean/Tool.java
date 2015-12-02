@@ -37,7 +37,7 @@ public  class Tool{
             @Override
             public void onSuccess(List<Book> object) {
                 // TODO Auto-generated method stub
-                Tool.alert(context, object.get(0).getQuestionContent());
+                Tool.alert(context, object.get(0).getIntro());
             }
 
             @Override

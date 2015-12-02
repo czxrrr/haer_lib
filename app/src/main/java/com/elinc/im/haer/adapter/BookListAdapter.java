@@ -61,10 +61,10 @@ public class BookListAdapter extends BaseListAdapter<Book> {
             iv_avatar.setImageResource(R.drawable.default_head);
         }*/
         if(contract.getTitle()!=null){question_title.setText(contract.getTitle());}
-        if(contract.getQuestionContent()!=null){question_content.setText(contract.getQuestionContent());}
-        if(contract.getAuthor()!=null){question_author.setText(contract.getAuthor().getUsername());}
+        if(contract.getIntro()!=null){question_content.setText(contract.getIntro());}
+        if(contract.getOwner()!=null){question_author.setText(contract.getOwner().getUsername());}
         question_date.setText(Tool.showdate(contract.getCreatedAt()));
-        String avatar=contract.getAuthor().getAvatar();
+        String avatar=contract.getOwner().getAvatar();
         if(avatar!=null && !avatar.equals("")){//加载头像-为了不每次都加载头像
             ImageLoader.getInstance().displayImage(avatar, user_avatar, ImageLoadOptions.getOptions(),animateFirstListener);
         }else {

@@ -174,14 +174,8 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 User u= BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
-//                if(author_name!="" && author_name!=null){
-//                    bundle.putString("username", author_name);
-//                    if(author_name.equals(u.getUsername().toString())){
-//                        bundle.putString("from", "me");
-//                    }else{
-//                        bundle.putString("from", "add");
-//                    }
-//                }
+                bundle.putString("book", book.getObjectId());
+                intent.putExtras(bundle);
                 intent.putExtras(bundle);
                 intent.setClass(BookItemActivityElinc.this, RentBook.class);
                 BookItemActivityElinc.this.startActivity(intent);
@@ -205,7 +199,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
                 if(!a.equals("")&& a!=null){
                     submitAnswer(a.getText().toString());
                 }else{
-                    ShowToast("请输入答案");
+                    ShowToast("请输入评论");
                 }
             }
         });
@@ -238,12 +232,12 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
                     show=show+" "+a.get(ii);
                 }
                 question_detail_tags.setText(show);
-                author_in_question_list.setText(object.getOnwer().getUsername());
-                author = object.getOnwer();
-                author_name = object.getOnwer().getUsername();
+                author_in_question_list.setText(object.getOwner().getUsername());
+                author = object.getOwner();
+                author_name = object.getOwner().getUsername();
                 String avatar;
 
-                avatar = object.getOnwer().getAvatar();
+                avatar = object.getOwner().getAvatar();
                 if (avatar != null && !avatar.equals("")) {//加载头像-为了不每次都加载头像
                     ImageLoader.getInstance().displayImage(avatar, avatar_for_author_in_question_list, ImageLoadOptions.getOptions(), animateFirstListener);
                 } else {
