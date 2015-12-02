@@ -16,42 +16,80 @@ import com.elinc.im.haer.bean.User;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.GetListener;
 import cn.bmob.v3.listener.SaveListener;
 
 public class RentBook extends ActivityBase {
 
-    private TextView apply= (TextView) findViewById(R.id.apply);
+    private TextView apply= (TextView) findViewById(R.id.btn_confirm_apply);
+    private TextView done= (TextView) findViewById(R.id.btn_done);
     private User u=new User();
     private Book book=new Book();
+    private String available;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_book);
-        apply.setOnClickListener(new View.OnClickListener() {
+
+        u=BmobUser.getCurrentUser(RentBook.this, User.class);
+        book.setObjectId(getIntent().getStringExtra("book"));
+        available=getIntent().getStringExtra("available");
+        Tool.alert(RentBook.this, book.getObjectId());
+
+        BmobQuery<Book> q=new BmobQuery<Book>();
+        q.getObject(RentBook.this, getIntent().getStringExtra("book"), new GetListener<Book>() {
+            @Override
+            public void onSuccess(Book bb) {
+                if(bb.getOwner().getUsername().equals(u.getUsername())){
+                    apply.setVisibility(View.GONE);
+                    done.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Tool.alert(RentBook.this,"没有网络");
+            }
+        });
+        done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 u=BmobUser.getCurrentUser(RentBook.this, User.class);
                 book.setObjectId(getIntent().getStringExtra("book"));
-                String available=getIntent().getStringExtra("available");
-                Tool.alert(RentBook.this, book.getObjectId());
-                if(available.equals("true")){
-                    book.setOwner(u);
-                    book.setAvailable(false);
-                    book.save(RentBook.this, new SaveListener() {
-                        @Override
-                        public void onSuccess() {
-                            Tool.alert(RentBook.this, "done");
-                        }
+                book.setAvailable(true);
+                book.save(RentBook.this, new SaveListener() {
+                    @Override
+                    public void onSuccess() {
+                        Tool.alert(RentBook.this,"OK，可以等待下一个借书的人了");
+                    }
 
-                        @Override
-                        public void onFailure(int i, String s) {
-                            Tool.alert(RentBook.this, "fail");
-                        }
-                    });
-                }else{
-                    Tool.alert(RentBook.this,"不好意思，这本书的拥有者现在还没有读完，先等等吧！如果急的话可以去书店买本新的");
-                }
+                    @Override
+                    public void onFailure(int i, String s) {
 
+                    }
+                });
+            }
+        });
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            if (available.equals("true")) {
+                book.setOwner(u);
+                book.setAvailable(false);
+                book.save(RentBook.this, new SaveListener() {
+                    @Override
+                    public void onSuccess() {
+                        Tool.alert(RentBook.this, "done");
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                        Tool.alert(RentBook.this, "fail");
+                    }
+                });
+            } else {
+                Tool.alert(RentBook.this, "不好意思，这本书的拥有者现在还没有读完，先等等吧！如果急的话可以去书店买本新的");
+            }
             }
         });
     }
