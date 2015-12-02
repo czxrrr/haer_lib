@@ -177,6 +177,7 @@ public class NewBookActivityElinc extends ActivityBase {
         new_book.setTags(tags);
         new_book.setIntro(questionContent);
         new_book.setTitle(title);
+        new_book.setAvailable(true);
         new_book.setSubmiter(BmobUser.getCurrentUser(this, User.class));
         new_book.save(NewBookActivityElinc.this, new SaveListener() {
             @Override

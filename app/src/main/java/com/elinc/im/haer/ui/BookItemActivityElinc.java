@@ -175,6 +175,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
                 Bundle bundle = new Bundle();
                 User u= BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
                 bundle.putString("book", book.getObjectId());
+                bundle.putString("available", book.getAvailable().toString());
                 intent.putExtras(bundle);
                 intent.putExtras(bundle);
                 intent.setClass(BookItemActivityElinc.this, RentBook.class);

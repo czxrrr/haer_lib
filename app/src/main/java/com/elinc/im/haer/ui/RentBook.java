@@ -32,19 +32,26 @@ public class RentBook extends ActivityBase {
             public void onClick(View view) {
                 u=BmobUser.getCurrentUser(RentBook.this, User.class);
                 book.setObjectId(getIntent().getStringExtra("book"));
+                String available=getIntent().getStringExtra("available");
                 Tool.alert(RentBook.this, book.getObjectId());
-                book.setOwner(u);
-                book.save(RentBook.this, new SaveListener() {
-                    @Override
-                    public void onSuccess() {
-                        Tool.alert(RentBook.this, "done");
-                    }
+                if(available.equals("true")){
+                    book.setOwner(u);
+                    book.setAvailable(false);
+                    book.save(RentBook.this, new SaveListener() {
+                        @Override
+                        public void onSuccess() {
+                            Tool.alert(RentBook.this, "done");
+                        }
 
-                    @Override
-                    public void onFailure(int i, String s) {
-                        Tool.alert(RentBook.this, "fail");
-                    }
-                });
+                        @Override
+                        public void onFailure(int i, String s) {
+                            Tool.alert(RentBook.this, "fail");
+                        }
+                    });
+                }else{
+                    Tool.alert(RentBook.this,"不好意思，这本书的拥有者现在还没有读完，先等等吧！如果急的话可以去书店买本新的");
+                }
+
             }
         });
     }
