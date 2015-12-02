@@ -86,10 +86,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/tag1"
+                    android:id="@+id/signature"
                     android:textSize="10sp"
                     android:textColor="#ffffff"
-                    android:text="还未设置目标"
+                    android:text="还未设置签名"
                     android:paddingBottom="1dp"
                     android:layout_marginTop="4dp"
                     android:paddingLeft="8dp"
@@ -97,31 +97,7 @@
                     android:background="@drawable/corner_bg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/tag2"
-                    android:textSize="10sp"
-                    android:textColor="#ffffff"
-                    android:paddingBottom="1dp"
-                    android:layout_marginTop="4dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:layout_marginLeft="6dp"
-                    android:background="@drawable/corner_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/tag3"
-                    android:gravity="center"
-                    android:textSize="10sp"
-                    android:textColor="#ffffff"
-                    android:background="@drawable/corner_bg"
-                    android:paddingBottom="1dp"
-                    android:layout_marginTop="4dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

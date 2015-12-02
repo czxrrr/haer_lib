@@ -1,54 +1,27 @@
 package com.elinc.im.haer.ui.fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.elinc.im.haer.R;
-import com.elinc.im.haer.adapter.QuestionListAdapter;
+import com.elinc.im.haer.adapter.BookListAdapter;
 import com.elinc.im.haer.bean.Book;
-import com.elinc.im.haer.bean.Card;
-import com.elinc.im.haer.bean.Goal;
 import com.elinc.im.haer.bean.User;
 import com.elinc.im.haer.ui.BookItemActivityElinc;
 import com.elinc.im.haer.ui.FragmentBase;
-import com.elinc.im.haer.ui.NewGoalActivityElinc;
 import com.elinc.im.haer.util.CollectionUtils;
 import com.elinc.im.haer.view.xlist.XListView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import cn.bmob.im.util.BmobLog;
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobPointer;
-import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.GetServerTimeListener;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
 
 
 //这个页面显示用户拥有的书，提供的功能主要是对书设置是否已经读完
@@ -56,7 +29,7 @@ public class UserFragment extends FragmentBase implements View.OnClickListener,X
     private User me;
     List<Book> book = new ArrayList<Book>();
     XListView mListView;
-    QuestionListAdapter adapter;
+    BookListAdapter adapter;
     private final int pageCapacity=5;
     int curPage = 0;
 
@@ -85,7 +58,7 @@ public class UserFragment extends FragmentBase implements View.OnClickListener,X
         mListView.setXListViewListener(this);
         mListView.pullRefreshing();
         mListView.setDividerHeight(2);
-        adapter = new QuestionListAdapter(getActivity(), book);
+        adapter = new BookListAdapter(getActivity(), book);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(this);
     }

@@ -17,7 +17,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
 import com.elinc.im.haer.R;
-import com.elinc.im.haer.adapter.QuestionListAdapter;
+import com.elinc.im.haer.adapter.BookListAdapter;
 import com.elinc.im.haer.bean.Book;
 import com.elinc.im.haer.ui.FragmentBase;
 import com.elinc.im.haer.ui.BookItemActivityElinc;
@@ -34,7 +34,7 @@ import com.elinc.im.haer.view.xlist.XListView.IXListViewListener;
 public class BookFragment extends FragmentBase implements OnClickListener,IXListViewListener,OnItemClickListener{
     List<Book> book = new ArrayList<Book>();
     XListView mListView;
-    QuestionListAdapter adapter;
+    BookListAdapter adapter;
     private final int pageCapacity=5;
     int curPage = 0;
 
@@ -63,7 +63,7 @@ public class BookFragment extends FragmentBase implements OnClickListener,IXList
         mListView.setXListViewListener(this);
         mListView.pullRefreshing();
         mListView.setDividerHeight(2);
-        adapter = new QuestionListAdapter(getActivity(), book);
+        adapter = new BookListAdapter(getActivity(), book);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(this);
     }

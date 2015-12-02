@@ -75,9 +75,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 			viewHolder.alpha = (TextView) convertView.findViewById(R.id.alpha);
 			viewHolder.name = (TextView) convertView.findViewById(R.id.tv_friend_name);
 			viewHolder.campus = (TextView) convertView.findViewById(R.id.campus);
-			viewHolder.tag1 = (TextView) convertView.findViewById(R.id.tag1);
-			viewHolder.tag2 = (TextView) convertView.findViewById(R.id.tag2);
-			viewHolder.tag3 = (TextView) convertView.findViewById(R.id.tag3);
+			viewHolder.signature = (TextView) convertView.findViewById(R.id.signature);
 			viewHolder.avatar = (ImageView) convertView.findViewById(R.id.img_friend_avatar);
 			viewHolder.gender = (ImageView) convertView.findViewById(R.id.gender);
 			convertView.setTag(viewHolder);
@@ -101,22 +99,20 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		}
 		viewHolder.name.setText(name);
 		viewHolder.campus.setText(friend.getCampus());
-		viewHolder.tag2.setVisibility(View.GONE);
-		viewHolder.tag3.setVisibility(View.GONE);
 		if (friend.getSignature()==null || friend.getSignature()=="") {
-			viewHolder.tag1.setText("这家伙真懒，什么都没留下");
+			viewHolder.signature.setText("这家伙真懒，什么都没留下");
 		}
 		else{
-			viewHolder.tag1.setText(friend.getSignature().toString());
+			viewHolder.signature.setText(friend.getSignature().toString());
 		}
 
 //		if (CollectionUtils.isNotNull(friend.getTags())) {
 //			if (friend.getTags().size() == 0){
-//				viewHolder.tag1.setText("TA还没有设置目标");
+//				viewHolder.signature.setText("TA还没有设置目标");
 //			}
 //			if (friend.getTags().size() > 0) {
 //				if (friend.getTags().get(0)!=null&&!friend.getTags().get(0).equals("")) {
-//					viewHolder.tag1.setText(friend.getTags().get(0));
+//					viewHolder.signature.setText(friend.getTags().get(0));
 //				}
 //			}
 //			if (friend.getTags().size() > 1) {
@@ -138,7 +134,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 //				viewHolder.tag3.setVisibility(View.GONE);
 //			}
 //		}else {
-//			viewHolder.tag1.setText("TA还没有设置目标");
+//			viewHolder.signature.setText("TA还没有设置目标");
 //			viewHolder.tag2.setVisibility(View.GONE);
 //			viewHolder.tag3.setVisibility(View.GONE);
 //		}
@@ -161,9 +157,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 	static class ViewHolder {
 		TextView alpha;// 首字母提示
 		TextView campus;
-		TextView tag1;
-		TextView tag2;
-		TextView tag3;
+		TextView signature;
 		ImageView avatar;
 		ImageView gender;
 		TextView name;

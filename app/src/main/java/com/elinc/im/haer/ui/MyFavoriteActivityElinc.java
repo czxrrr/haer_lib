@@ -26,7 +26,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.elinc.im.haer.R;
-import com.elinc.im.haer.adapter.QuestionListAdapter;
+import com.elinc.im.haer.adapter.BookListAdapter;
 import com.elinc.im.haer.bean.Book;
 import com.elinc.im.haer.bean.Tool;
 import com.elinc.im.haer.bean.User;
@@ -45,7 +45,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
     Button btn_search_question;
     List<Book> book = new ArrayList<Book>();
     XListView mListView;
-    QuestionListAdapter adapter;
+    BookListAdapter adapter;
     private View view;
     private final int pageCapacity=5;
     int curPage = 0;
@@ -77,7 +77,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
         //
         mListView.pullRefreshing();
 
-        adapter = new QuestionListAdapter(this, book);
+        adapter = new BookListAdapter(this, book);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(this);

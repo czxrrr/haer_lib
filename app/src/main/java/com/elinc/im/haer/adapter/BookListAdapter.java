@@ -29,10 +29,10 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import cn.bmob.v3.BmobUser;
 
-public class QuestionListAdapter extends BaseListAdapter<Book> {
+public class BookListAdapter extends BaseListAdapter<Book> {
     Context context;
     private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
-    public QuestionListAdapter(Context context, List<Book> list) {
+    public BookListAdapter(Context context, List<Book> list) {
         super(context, list);
         this.context=context;
         // TODO Auto-generated constructor stub

@@ -24,7 +24,7 @@ package com.elinc.im.haer.ui;
         import cn.bmob.v3.listener.FindListener;
 
         import com.elinc.im.haer.R;
-        import com.elinc.im.haer.adapter.QuestionListAdapter;
+        import com.elinc.im.haer.adapter.BookListAdapter;
         import com.elinc.im.haer.bean.Book;
         import com.elinc.im.haer.util.CollectionUtils;
         import com.elinc.im.haer.view.xlist.XListView;
@@ -39,7 +39,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
     private EditText et_search_question;
     private List<Book> book = new ArrayList<Book>();
     private XListView mListView;
-    private QuestionListAdapter adapter;
+    private BookListAdapter adapter;
     private final int pageCapacity=5;
     int curPage = 0;
     private ProgressDialog progress;
@@ -67,7 +67,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         mListView.setXListViewListener(this);
         mListView.pullRefreshing();
         mListView.setDividerHeight(2);
-        adapter = new QuestionListAdapter(FindBook.this, book);
+        adapter = new BookListAdapter(FindBook.this, book);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(this);
     }
