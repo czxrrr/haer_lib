@@ -99,7 +99,7 @@ public class NewBookActivityElinc extends ActivityBase {
         new_book =new Book();
     }
     private void initTagButton(){
-        Button btn_add_food= (Button) findViewById(R.id.btn_add_food);
+        Button btn_add_food= (Button) findViewById(R.id.btn_add_study);
         btn_add_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +112,7 @@ public class NewBookActivityElinc extends ActivityBase {
                 et_input_tags.setText(a);
             }
         });
-        Button btn_add_fun= (Button) findViewById(R.id.btn_add_fun);
+        Button btn_add_fun= (Button) findViewById(R.id.btn_add_food);
         btn_add_fun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +122,7 @@ public class NewBookActivityElinc extends ActivityBase {
                 et_input_tags.setText(a);
             }
         });
-        Button btn_add_study= (Button) findViewById(R.id.btn_add_study);
+        Button btn_add_study= (Button) findViewById(R.id.btn_add_fun);
         btn_add_study.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,13 +154,13 @@ public class NewBookActivityElinc extends ActivityBase {
                 String questionTitleText = questionTitle.getText().toString();
 
                 tags= Arrays.asList((et_input_tags.getText().toString().split(",|，| |　",3)));
-                if(questionContentText.length()<5){
+                if(questionContentText.length()<1){
                     ShowToast("内容字数不足");
                 }
-                if(questionTitleText.length()<5){
+                if(questionTitleText.length()<1){
                     ShowToast("标题字数不足");
                 }
-                if(questionTitleText.length()>=5 && questionContentText.length()>=5)
+                if(questionTitleText.length()>=1 && questionContentText.length()>=1)
                 AddQuestion(questionTitleText, questionContentText);
             }
         });
@@ -526,72 +526,3 @@ public class NewBookActivityElinc extends ActivityBase {
 
     }
 }
-
-
-
-
-/*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case BmobConstants.REQUESTCODE_UPLOADAVATAR_CAMERA:// 拍照修改头像
-                if (resultCode == RESULT_OK) {
-                    if (!Environment.getExternalStorageState().equals(
-                            Environment.MEDIA_MOUNTED)) {
-                        ShowToast("SD不可用");
-                        return;
-                    }
-                    isFromCamera = true;
-                    File file = new File(filePath);
-                    degree = PhotoUtil.readPictureDegree(file.getAbsolutePath());
-                    Log.i("life", "拍照后的角度：" + degree);
-                    startImageAction(Uri.fromFile(file), 500, 500,
-                            BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
-                }
-                break;
-            case BmobConstants.REQUESTCODE_UPLOADAVATAR_LOCATION:// 本地修改头像
-                if (avatorPop != null) {
-                    avatorPop.dismiss();
-                }
-                Uri uri = null;
-                if (data == null) {
-                    return;
-                }
-                if (resultCode == RESULT_OK) {
-                    if (!Environment.getExternalStorageState().equals(
-                            Environment.MEDIA_MOUNTED)) {
-                        ShowToast("SD不可用");
-                        return;
-                    }
-                    isFromCamera = false;
-                    uri = data.getData();
-                    startImageAction(uri, 500, 500,
-                            BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP, true);
-                } else {
-                    ShowToast("照片获取失败");
-                }
-
-                break;
-            case BmobConstants.REQUESTCODE_UPLOADAVATAR_CROP:// 裁剪头像返回
-                // TODO sent to crop
-                if (avatorPop != null) {
-                    avatorPop.dismiss();
-                }
-                if (data == null) {
-                    // Toast.makeText(this, "取消选择", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    saveCropAvator(data);
-                }
-                // 初始化文件路径
-                filePath = "";
-                // 上传头像
-                uploadAvatar();
-                break;
-            default:
-                break;
-
-        }
-    }*/

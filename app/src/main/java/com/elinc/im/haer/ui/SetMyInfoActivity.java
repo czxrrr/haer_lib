@@ -64,7 +64,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  */
 public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 
-	private TextView  tv_set_nick, tv_set_gender,tv_set_campus,tv_set_sign,tv_set_goal;
+	private TextView  tv_set_nick, tv_set_gender,tv_set_campus,tv_set_sign;
 	private ImageView iv_set_avator, iv_arraw;
 	private Button iv_edit;
 	private LinearLayout layout_all;
@@ -189,29 +189,6 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 		tv_set_sign.setText(user.getSignature());
 		tv_set_campus.setText(user.getCampus());
 		tv_set_nick.setText(user.getUsername());
-
-		BmobQuery<Goal> query = new BmobQuery<>();
-		//用此方式可以构造一个BmobPointer对象。只需要设置objectId就行
-		User u= new User();
-		u.setObjectId(user.getObjectId());
-		query.addWhereEqualTo("author", new BmobPointer(user));
-		query.addWhereNotEqualTo("out", true);
-		query.findObjects(this, new FindListener<Goal>() {
-			@Override
-			public void onSuccess(List<Goal> object) {
-				String g=""; //暂存 goal 的title
-				for (int i = 0; i < object.size() && i < 3; i++) {
-					g = g +"  "+object.get(i).getGoalContent();
-				}
-				tv_set_goal.setText(g);
-
-			}
-			@Override
-			public void onError(int code, String msg) {
-				Toast.makeText(SetMyInfoActivity.this, "无法获取我的目标！", Toast.LENGTH_SHORT).show();
-			}
-		});
-
 		tv_set_gender.setText(user.getSex() ? "男" : "女");
 		// 检测是否为黑名单用户
 		if (from.equals("other")) {

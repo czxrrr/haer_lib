@@ -21,8 +21,8 @@ import cn.bmob.v3.listener.SaveListener;
 
 public class RentBook extends ActivityBase {
 
-    private TextView apply= (TextView) findViewById(R.id.btn_confirm_apply);
-    private TextView done= (TextView) findViewById(R.id.btn_done);
+    private TextView apply;
+    private TextView done;
     private User u=new User();
     private Book book=new Book();
     private String available;
@@ -30,13 +30,16 @@ public class RentBook extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent_book);
-
+        initTopBarForLeft("借书");
+        apply= (TextView) findViewById(R.id.btn_confirm_apply);
+        done= (TextView) findViewById(R.id.btn_done);
         u=BmobUser.getCurrentUser(RentBook.this, User.class);
         book.setObjectId(getIntent().getStringExtra("book"));
         available=getIntent().getStringExtra("available");
         Tool.alert(RentBook.this, book.getObjectId());
 
         BmobQuery<Book> q=new BmobQuery<Book>();
+        q.include("owner");
         q.getObject(RentBook.this, getIntent().getStringExtra("book"), new GetListener<Book>() {
             @Override
             public void onSuccess(Book bb) {

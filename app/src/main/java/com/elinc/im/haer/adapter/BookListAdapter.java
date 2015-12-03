@@ -45,13 +45,13 @@ public class BookListAdapter extends BaseListAdapter<Book> {
             convertView = mInflater.inflate(R.layout.item_book_in_list_elinc, null);
         }
         final Book contract = getList().get(arg0);
-        TextView question_title = ViewHolder.get(convertView, R.id.question_title);
-        TextView question_content = ViewHolder.get(convertView, R.id.question_content);
-        final TextView question_author = ViewHolder.get(convertView,R.id.question_author);
-        TextView question_date = ViewHolder.get(convertView,R.id.question_date);
-        CircleImageView user_avatar= ViewHolder.get(convertView,R.id.avatar_for_question);
-        final TextView question_number_of_answer = ViewHolder.get(convertView,R.id.question_number_of_answer);
-        //Button btn_add = ViewHolder.get(convertView, R.id.question_content);
+        TextView book_title = ViewHolder.get(convertView, R.id.book_title);
+        TextView book_content = ViewHolder.get(convertView, R.id.book_content);
+        final TextView book_author = ViewHolder.get(convertView,R.id.book_author);
+        TextView book_available = ViewHolder.get(convertView,R.id.book_available);
+        CircleImageView user_avatar= ViewHolder.get(convertView,R.id.avatar_for_book);
+        //final TextView book_number_of_answer = ViewHolder.get(convertView,R.id.book_number_of_answer);
+        //Button btn_add = ViewHolder.get(convertView, R.id.book_content);
 
         //String avatar = contract.getAvatar();
 
@@ -60,27 +60,31 @@ public class BookListAdapter extends BaseListAdapter<Book> {
         } else {
             iv_avatar.setImageResource(R.drawable.default_head);
         }*/
-        if(contract.getTitle()!=null){question_title.setText(contract.getTitle());}
-        if(contract.getIntro()!=null){question_content.setText(contract.getIntro());}
-        if(contract.getOwner()!=null){question_author.setText(contract.getOwner().getUsername());}
-        question_date.setText(Tool.showdate(contract.getCreatedAt()));
+        if(contract.getTitle()!=null){book_title.setText(contract.getTitle());}
+        if(contract.getIntro()!=null){book_content.setText(contract.getIntro());}
+        if(contract.getOwner()!=null){book_author.setText(contract.getOwner().getUsername());}
+        if(contract.getAvailable()==false){
+            book_available.setText("不可借阅");
+        }else{
+            book_available.setText("可借阅");
+        }
         String avatar=contract.getOwner().getAvatar();
         if(avatar!=null && !avatar.equals("")){//加载头像-为了不每次都加载头像
             ImageLoader.getInstance().displayImage(avatar, user_avatar, ImageLoadOptions.getOptions(),animateFirstListener);
         }else {
             user_avatar.setImageResource(R.drawable.head);
         }
-        question_number_of_answer.setText("" + contract.getNumberOfAnswer());
+        //book_number_of_answer.setText("" + contract.getNumberOfAnswer());
 
 
-        question_author.setOnClickListener(new View.OnClickListener() {
+        book_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 User u= BmobUser.getCurrentUser(context, User.class);
-                bundle.putString("username", question_author.getText().toString());
-                if(question_author.getText().toString().equals(u.getUsername().toString())){
+                bundle.putString("username", book_author.getText().toString());
+                if(book_author.getText().toString().equals(u.getUsername().toString())){
                     bundle.putString("from", "me");
                 }else{
                     bundle.putString("from", "add");
@@ -97,8 +101,8 @@ public class BookListAdapter extends BaseListAdapter<Book> {
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 User u = BmobUser.getCurrentUser(context, User.class);
-                bundle.putString("username", question_author.getText().toString());
-                if (question_author.getText().toString().equals(u.getUsername().toString())) {
+                bundle.putString("username", book_author.getText().toString());
+                if (book_author.getText().toString().equals(u.getUsername().toString())) {
                     bundle.putString("from", "me");
                 } else {
                     bundle.putString("from", "add");
