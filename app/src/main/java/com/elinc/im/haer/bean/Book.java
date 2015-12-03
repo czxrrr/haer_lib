@@ -12,12 +12,15 @@ public class Book extends BmobObject {
     private String title;
     private String intro;
     private User submiter;
+
     private User owner;
     private List<String> tags;
     private String bookAvatar;
     private BmobRelation answerList;
     private Boolean available;
     private Integer number_of_answer;
+
+
 
     public Integer getNumberOfAnswer() {
         return number_of_answer;

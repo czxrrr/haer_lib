@@ -290,7 +290,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
                     if (answer != null) {
                         answer.clear();
                     }
-                    ShowToast("没有答案，添加一个把");
+                    ShowToast("没有评论，添加一个把");
                     mListView.setPullLoadEnable(false);
                 }
                 if (!true) {

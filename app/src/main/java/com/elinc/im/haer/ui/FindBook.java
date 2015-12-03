@@ -52,7 +52,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
     }
 
     private void initView(){
-        initTopBarForLeft("查找问题");
+        initTopBarForLeft("寻找书籍");
         et_search_question = (EditText)findViewById(R.id.et_search_question);
         Button btn_search_question = (Button) findViewById(R.id.btn_search_question);
         btn_search_question.setOnClickListener(this);

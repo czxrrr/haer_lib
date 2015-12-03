@@ -48,7 +48,7 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 	}
 
 	private void initView() {
-		initTopBarForLeft("学伴推荐");
+		initTopBarForLeft("书友推荐");
 		currentUser = BmobUser.getCurrentUser(this,User.class);
 		initXListView();
 	}

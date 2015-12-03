@@ -49,7 +49,7 @@ public class BookListAdapter extends BaseListAdapter<Book> {
         TextView book_content = ViewHolder.get(convertView, R.id.book_content);
         final TextView book_author = ViewHolder.get(convertView,R.id.book_author);
         TextView book_available = ViewHolder.get(convertView,R.id.book_available);
-        CircleImageView user_avatar= ViewHolder.get(convertView,R.id.avatar_for_book);
+        ImageView user_avatar= ViewHolder.get(convertView,R.id.avatar_for_book);
         //final TextView book_number_of_answer = ViewHolder.get(convertView,R.id.book_number_of_answer);
         //Button btn_add = ViewHolder.get(convertView, R.id.book_content);
 
@@ -68,7 +68,7 @@ public class BookListAdapter extends BaseListAdapter<Book> {
         }else{
             book_available.setText("可借阅");
         }
-        String avatar=contract.getOwner().getAvatar();
+        String avatar=contract.getBookAvatar();
         if(avatar!=null && !avatar.equals("")){//加载头像-为了不每次都加载头像
             ImageLoader.getInstance().displayImage(avatar, user_avatar, ImageLoadOptions.getOptions(),animateFirstListener);
         }else {
