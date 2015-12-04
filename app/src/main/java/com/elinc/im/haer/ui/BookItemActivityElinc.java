@@ -210,7 +210,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
         refreshList();
     }
     private void initQuestionContent(){
-        String id=bundle.getString("questionId");
+        String id=bundle.getString("bookId");
         BmobQuery<Book> bmobQuery = new BmobQuery<Book>();
         bmobQuery.include("author");
         bmobQuery.getObject(this, id, new GetListener<Book>() {
@@ -268,8 +268,8 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
     private void initList(){
         initXListView();
         BmobQuery<Answer> bmobQuery = new BmobQuery<Answer>();
-        bmobQuery.addWhereEqualTo("questionId", bundle.getString("questionId"));
-        bmobQuery.include("responder,questionId");
+        bmobQuery.addWhereEqualTo("bookId", bundle.getString("bookId"));
+        bmobQuery.include("responder,bookId");
         bmobQuery.setLimit(pageCapacity);
         bmobQuery.order("createdAt");
         bmobQuery.findObjects(BookItemActivityElinc.this, new FindListener<Answer>() {
@@ -313,8 +313,8 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
     public void onLoadMore() {
         // TODO Auto-generated method stub
         BmobQuery<Answer> bmobQuery = new BmobQuery<Answer>();
-        bmobQuery.addWhereEqualTo("questionId", bundle.getString("questionId"));
-        bmobQuery.include("questionId,responder");
+        bmobQuery.addWhereEqualTo("bookId", bundle.getString("bookId"));
+        bmobQuery.include("bookId,responder");
         bmobQuery.setSkip((curPage + 1) * pageCapacity);
         curPage++;
         bmobQuery.setLimit(pageCapacity);
@@ -364,8 +364,8 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
     public void refreshList(){
         curPage=0;
         BmobQuery<Answer> bmobQuery = new BmobQuery<Answer>();
-        bmobQuery.addWhereEqualTo("questionId", bundle.getString("questionId"));
-        bmobQuery.include("questionId,responder");
+        bmobQuery.addWhereEqualTo("bookId", bundle.getString("bookId"));
+        bmobQuery.include("bookId,responder");
         bmobQuery.setLimit(pageCapacity);
         bmobQuery.order("-createdAt");
         bmobQuery.findObjects(BookItemActivityElinc.this, new FindListener<Answer>() {
@@ -425,7 +425,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
             @Override
             public void onSuccess(int i) {
                 Book book = new Book();
-                book.setObjectId(bundle.getString("questionId"));
+                book.setObjectId(bundle.getString("bookId"));
                 User user = BmobUser.getCurrentUser(BookItemActivityElinc.this, User.class);
                 User u = new User();
                 u.setObjectId(user.getObjectId());
@@ -487,7 +487,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
     public void submitAnswer(String a){
         final User user = BmobUser.getCurrentUser(this, User.class);
         Book book =new Book();
-        book.setObjectId( bundle.getString("questionId"));
+        book.setObjectId(bundle.getString("bookId"));
         book.increment("numberOfAnswer");
         book.update(BookItemActivityElinc.this, new UpdateListener() {
             @Override
@@ -509,8 +509,8 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
             public void onSuccess() {
                 Tool.alert(BookItemActivityElinc.this, "提交成功");
                 BmobLog.i("Json测试", user.getUsername());
-                BmobLog.i("Json测试", CreatJsonMsgInString(author_name, user.getUsername(), bundle.getString("questionId")));
-                manager.sendJsonMessage(CreatJsonMsgInString(author_name, user.getUsername(), bundle.getString("questionId")), author.getObjectId());
+                BmobLog.i("Json测试", CreatJsonMsgInString(author_name, user.getUsername(), bundle.getString("bookId")));
+                manager.sendJsonMessage(CreatJsonMsgInString(author_name, user.getUsername(), bundle.getString("bookId")), author.getObjectId());
 
                 finish();
             }
@@ -522,12 +522,12 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
         });
     }
 
-    public String CreatJsonMsgInString(String author_name, String answerer_name,String questionId) {
+    public String CreatJsonMsgInString(String author_name, String answerer_name,String bookId) {
         JSONObject res = new JSONObject();
         try{
             res.put("author_name",author_name);
             res.put("answerer_name",answerer_name);
-            res.put("questionId",questionId);
+            res.put("bookId",bookId);
         }catch (JSONException e) {
 
         }

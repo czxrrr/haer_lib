@@ -21,7 +21,6 @@ public class Book extends BmobObject {
     private Integer number_of_answer;
 
 
-
     public Integer getNumberOfAnswer() {
         return number_of_answer;
     }

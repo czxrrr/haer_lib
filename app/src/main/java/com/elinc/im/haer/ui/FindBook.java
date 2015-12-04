@@ -192,8 +192,8 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
     public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        String questionId = book.get(position-1).getObjectId();
-        bundle.putString("questionId", questionId);
+        String bookId = book.get(position-1).getObjectId();
+        bundle.putString("bookId", bookId);
         intent.putExtras(bundle);
         intent.setClass(FindBook.this, BookItemActivityElinc.class);
         startAnimActivity(intent);

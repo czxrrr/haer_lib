@@ -89,9 +89,9 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
     public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        String questionId = book.get(position-1).getObjectId();
+        String bookId = book.get(position-1).getObjectId();
         //ShowToast("point"+position);
-        bundle.putString("questionId", questionId);
+        bundle.putString("bookId", bookId);
         intent.putExtras(bundle);
         intent.setClass(this, BookItemActivityElinc.class);
         startAnimActivity(intent);
@@ -221,8 +221,8 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
                 Toast.makeText(MyFavoriteActivityElinc.this, "" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                String questionId = book.get(position-1).getObjectId();
-                bundle.putString("questionId", questionId);
+                String bookId = book.get(position-1).getObjectId();
+                bundle.putString("bookId", bookId);
                 intent.putExtras(bundle);
                 intent.setClass(MyFavoriteActivityElinc.this, BookItemActivityElinc.class);
                 startAnimActivity(intent);
