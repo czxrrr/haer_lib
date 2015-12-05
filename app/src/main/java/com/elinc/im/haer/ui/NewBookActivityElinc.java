@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -44,6 +45,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import cn.bmob.im.BmobUserManager;
 import cn.bmob.im.util.BmobLog;
@@ -239,6 +241,8 @@ public class NewBookActivityElinc extends ActivityBase {
 //        return super.onOptionsItemSelected(item);
 //    }
 
+
+
     RelativeLayout layout_choose;
     RelativeLayout layout_photo;
     PopupWindow avatorPop;
@@ -262,7 +266,7 @@ public class NewBookActivityElinc extends ActivityBase {
                 layout_photo.setBackgroundDrawable(getResources().getDrawable(
                         R.drawable.pop_bg_press));
                 selectImageFromCamera();
-/*                File dir = new File(BmobConstants.MyAvatarDir);
+                File dir = new File(BmobConstants.MyAvatarDir);
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
@@ -271,11 +275,10 @@ public class NewBookActivityElinc extends ActivityBase {
                         .format(new Date()));
                 filePath = file.getAbsolutePath();// 获取相片的保存路径
                 Uri imageUri = Uri.fromFile(file);
-
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 startActivityForResult(intent,
-                        BmobConstants.REQUESTCODE_UPLOADAVATAR_CAMERA);*/
+                        BmobConstants.REQUESTCODE_UPLOADAVATAR_CAMERA);
             }
         });
         layout_choose.setOnClickListener(new View.OnClickListener() {
@@ -290,11 +293,11 @@ public class NewBookActivityElinc extends ActivityBase {
                 layout_choose.setBackgroundDrawable(getResources().getDrawable(
                         R.drawable.pop_bg_press));
                 selectImageFromLocal();
-               /* Intent intent = new Intent(Intent.ACTION_PICK, null);
+                Intent intent = new Intent(Intent.ACTION_PICK, null);
                 intent.setDataAndType(
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image*//*");
                 startActivityForResult(intent,
-                        BmobConstants.REQUESTCODE_UPLOADAVATAR_LOCATION);*/
+                        BmobConstants.REQUESTCODE_UPLOADAVATAR_LOCATION);
             }
         });
 

@@ -91,7 +91,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
     LinearLayout layout_all_of_question_detail;
     TextView author_in_question_list;
     ImageView avatar_for_author_in_question_list;
-    TextView question_date_in_question_list,apply;
+    TextView apply;
     String author_name;
     Book book;
     ImageButton follow;
@@ -212,7 +212,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
     private void initQuestionContent(){
         String id=bundle.getString("bookId");
         BmobQuery<Book> bmobQuery = new BmobQuery<Book>();
-        bmobQuery.include("author");
+        bmobQuery.include("owner");
         bmobQuery.getObject(this, id, new GetListener<Book>() {
             @Override
             public void onSuccess(Book object) {
@@ -223,8 +223,8 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
                 titleTV.setText(object.getTitle());
                 TextView contentTV = (TextView) findViewById(R.id.question_item_question_content);
                 contentTV.setText(object.getIntro());
-                question_date_in_question_list = (TextView) findViewById(R.id.question_date_in_question_list);
-                question_date_in_question_list.setText(Tool.showdate(object.getCreatedAt()));
+                //question_date_in_question_list = (TextView) findViewById(R.id.question_date_in_question_list);
+                //question_date_in_question_list.setText(Tool.showdate(object.getCreatedAt()));
                 TextView question_detail_tags= (TextView) findViewById(R.id.question_detail_tags);
                 List<String> a=object.getTags();
                 String show="";
@@ -263,7 +263,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
         });
     }
     private void initBasicView() {
-        initTopBarForLeft("校园问答");
+        initTopBarForLeft("书籍详情");
     }
     private void initList(){
         initXListView();
@@ -467,6 +467,7 @@ public class BookItemActivityElinc extends ActivityBase  implements View.OnClick
                         public void onFailure(int arg0, String arg1) {
                             // TODO Auto-generated method stub
                             Log.i("life", "多对多关联添加失败");
+                            Log.i("====",arg1);
                             Tool.alert(BookItemActivityElinc.this, "收藏失败，请检查网络");
                         }
                     });

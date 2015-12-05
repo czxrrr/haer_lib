@@ -505,7 +505,7 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 
 			@Override
 			public void onFailure(int arg0, String msg) {
-				ShowToast("头像上传失败：" + msg);
+				ShowToast("上传失败：" + msg);
 			}
 		});
 	}
@@ -516,14 +516,14 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 		updateUserData(u,new UpdateListener() {
 			@Override
 			public void onSuccess() {
-				ShowToast("头像更新成功！");
+				ShowToast("更新成功！");
 				// 更新头像
 				refreshAvatar(url);
 			}
 
 			@Override
 			public void onFailure(int code, String msg) {
-				ShowToast("头像更新失败：" + msg);
+				ShowToast("更新失败：" + msg);
 			}
 		});
 	}

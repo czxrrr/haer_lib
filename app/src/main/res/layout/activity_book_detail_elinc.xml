@@ -113,12 +113,12 @@
             android:layout_height="20dp">
 
             <TextView
-                android:id="@+id/author_in_question_list"
                 android:layout_marginLeft="3dp"
-                android:text="@string/loading"
+                android:text="现任拥有者"
                 android:textSize="12sp"
                 android:fontFamily="微软雅黑"
                 android:textColor="#66cc99"
+                android:id="@+id/now"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -127,8 +127,8 @@
                 />
 
             <TextView
-                android:layout_toRightOf="@+id/author_in_question_list"
-                android:id="@+id/question_date_in_question_list"
+                android:layout_toRightOf="@+id/now"
+                android:id="@+id/author_in_question_list"
                 android:layout_marginLeft="5dp"
                 android:text="@string/loading"
                 android:gravity="bottom"
@@ -201,6 +201,7 @@
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
+            android:visibility="gone"
             android:layout_gravity="center"
             android:id="@+id/submit_answer_avatar"
             android:background="@drawable/btn_chat_add_picture_selector"
