@@ -72,7 +72,7 @@ public class BookListAdapter extends BaseListAdapter<Book> {
         if(avatar!=null && !avatar.equals("")){//加载头像-为了不每次都加载头像
             ImageLoader.getInstance().displayImage(avatar, user_avatar, ImageLoadOptions.getOptions(),animateFirstListener);
         }else {
-            user_avatar.setImageResource(R.drawable.head);
+            user_avatar.setImageResource(R.drawable.no_cover);
         }
         //book_number_of_answer.setText("" + contract.getNumberOfAnswer());
 
