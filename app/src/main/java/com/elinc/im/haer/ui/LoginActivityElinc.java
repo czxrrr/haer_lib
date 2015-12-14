@@ -42,7 +42,7 @@ public class LoginActivityElinc extends BaseActivity implements OnClickListener 
 	TextView btn_find_pwd_in_login;
 
 	private MyBroadcastReceiver receiver = new MyBroadcastReceiver();
-	private TextView elinc;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +79,11 @@ public class LoginActivityElinc extends BaseActivity implements OnClickListener 
 		btn_login.setOnClickListener(this);
 		btn_register.setOnClickListener(this);
 		btn_find_pwd_in_login.setOnClickListener(this);
-		elinc = (TextView) findViewById(R.id.elinc);
+		//elinc = (TextView) findViewById(R.id.elinc);
 
 		AssetManager mgr=getAssets();
 		Typeface tf=Typeface.createFromAsset(mgr, "raw/Blokletters-Balpen.ttf");
-		elinc.setTypeface(tf);
+		//elinc.setTypeface(tf);
 
 	}
 

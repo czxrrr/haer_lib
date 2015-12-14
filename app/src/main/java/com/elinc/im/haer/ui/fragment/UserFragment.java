@@ -21,6 +21,7 @@ import java.util.List;
 
 import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
 
 
@@ -47,6 +48,8 @@ public class UserFragment extends FragmentBase implements View.OnClickListener,X
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        me = BmobUser.getCurrentUser(getActivity(), User.class);
+
         initXListView();
         initAdapter();
     }

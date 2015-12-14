@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
     <LinearLayout
-        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         >
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
@@ -21,6 +23,13 @@
                 android:layout_marginRight="10dp"
                 android:id="@+id/avatar_for_book"
                 />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -41,7 +50,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/loading"
-                            android:paddingTop="0dp"
                             android:textSize="16sp"
                             android:paddingBottom="6dp"
 
@@ -69,13 +77,10 @@
 
 
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
             <TextView
                 android:text="目前拥有者："
                 android:fontFamily="微软雅黑"
@@ -99,22 +104,26 @@
                 android:textColor="#66cc99"
 
                 />
-            <TextView
-                android:text="不可借阅"
-                android:fontFamily="微软雅黑"
-                android:id="@+id/book_available"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:typeface="sans"
-                android:gravity="right"
-                android:textSize="12sp"
-                android:textColor="#757575"
-                />
+
+                <TextView
+                    android:text="不可借阅"
+                    android:fontFamily="微软雅黑"
+                    android:id="@+id/book_available"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:typeface="sans"
+                    android:gravity="right"
+                    android:textSize="12sp"
+                    android:textColor="#757575"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="4dp"
+            android:orientation="vertical"
+            >
 
         </LinearLayout>
 

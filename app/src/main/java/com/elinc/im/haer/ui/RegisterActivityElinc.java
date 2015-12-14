@@ -130,6 +130,7 @@ public class RegisterActivityElinc extends BaseActivity {
 								//Log.i("smile", " message id:" + integer);//用于查询本次短信发送详情
 								Tool.alert(RegisterActivityElinc.this, "验证短信发送成功");
 							} else {
+								Tool.alert(RegisterActivityElinc.this,ex);
 								ShowToast("世界上最遥远的距离就是没网");
 							}
 						}

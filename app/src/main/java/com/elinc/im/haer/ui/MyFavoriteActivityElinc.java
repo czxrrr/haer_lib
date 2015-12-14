@@ -37,7 +37,7 @@ import com.elinc.im.haer.view.xlist.XListView.IXListViewListener;
 /** 添加好友
  * @ClassName: SearchQuestion
  * @Description: TODO
- * @author smile
+ * @owner smile
  * @date 2014-6-5 下午5:26:41
  */
 public class MyFavoriteActivityElinc extends ActivityBase implements OnClickListener,IXListViewListener,OnItemClickListener{
@@ -115,7 +115,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
         BmobQuery<Book> query = new BmobQuery<Book>();
         User u = BmobUser.getCurrentUser(this, User.class);
         u.setObjectId(u.getObjectId());
-        query.include("author");
+        query.include("owner");
         query.setSkip((curPage + 1) * pageCapacity);
         curPage++;
         query.setLimit(pageCapacity);
@@ -161,7 +161,7 @@ public class MyFavoriteActivityElinc extends ActivityBase implements OnClickList
         BmobQuery<Book> query = new BmobQuery<Book>();
         User u = BmobUser.getCurrentUser(this, User.class);
         u.setObjectId(u.getObjectId());
-        query.include("author");
+        query.include("owner");
         query.setLimit(pageCapacity);
         query.addWhereRelatedTo("follow", new BmobPointer(u));
         query.findObjects(this, new FindListener<Book>() {

@@ -32,7 +32,7 @@ package com.elinc.im.haer.ui;
 /** 添加好友
  * @ClassName: SearchQuestion
  * @Description: TODO
- * @author smile
+ * @owner smile
  * @date 2014-6-5 下午5:26:41
  */
 public class FindBook extends ActivityBase implements View.OnClickListener,XListView.IXListViewListener,AdapterView.OnItemClickListener {
@@ -83,7 +83,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
         BmobQuery<Book> eq2 = new BmobQuery<>();
-        eq2.addWhereContains("question_content", et_search_question.getText().toString());
+        eq2.addWhereContains("intro", et_search_question.getText().toString());
         BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
         List<BmobQuery<Book>> queries = new ArrayList<>();
@@ -93,14 +93,14 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         BmobQuery<Book> mainQuery = new BmobQuery<>();
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
-        mainQuery.include("author");
+        mainQuery.include("owner");
         mainQuery.or(queries);
         mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
             public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
-                    ShowToast("问题搜索完成!");
+                    ShowToast("搜索完成!");
                 } else {
                     mListView.setPullLoadEnable(true);
                 }
@@ -114,7 +114,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
                     if (book != null) {
                         book.clear();
                     }
-                    ShowToast("没有您需要的问题，去提问吧");
+                    ShowToast("sorry，没有您需要的书籍");
                 }
                 if (!isUpdate) {
                     progress.dismiss();
@@ -150,7 +150,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
         BmobQuery<Book> eq2 = new BmobQuery<>();
-        eq2.addWhereContains("question_content", et_search_question.getText().toString());
+        eq2.addWhereContains("intro", et_search_question.getText().toString());
         BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
         List<BmobQuery<Book>> queries = new ArrayList<>();
@@ -158,7 +158,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         queries.add(eq2);
         queries.add(eq3);
         BmobQuery<Book> mainQuery = new BmobQuery<>();
-        mainQuery.include("author");
+        mainQuery.include("owner");
         mainQuery.setSkip((curPage + 1) * pageCapacity);
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
@@ -168,7 +168,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
             public void onSuccess(List<Book> list) {
                 if (list.size() < pageCapacity) {
                     mListView.setPullLoadEnable(false);
-                    ShowToast("问题搜索完成!");
+                    ShowToast("搜索完成!");
                 } else {
                     mListView.setPullLoadEnable(true);
                 }
@@ -228,7 +228,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
         BmobQuery<Book> eq2 = new BmobQuery<>();
-        eq2.addWhereContains("question_content", et_search_question.getText().toString());
+        eq2.addWhereContains("intro", et_search_question.getText().toString());
         BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
         List<BmobQuery<Book>> queries = new ArrayList<>();
@@ -236,7 +236,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         queries.add(eq2);
         queries.add(eq3);
         BmobQuery<Book> mainQuery = new BmobQuery<>();
-        mainQuery.include("author");
+        mainQuery.include("owner");
         mainQuery.setSkip((curPage + 1) * pageCapacity);
         curPage++;
         mainQuery.setLimit(pageCapacity);
@@ -258,7 +258,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
 
             @Override
             public void onError(int i, String s) {
-                ShowLog("搜索更多问题出错:" + s);
+                ShowLog("搜索书籍问题出错:" + s);
                 mListView.setPullLoadEnable(false);
                 refreshLoad();
             }
@@ -279,7 +279,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
 
     public void initAdapter(){
         BmobQuery<Book> allQuery = new BmobQuery<>();
-        allQuery.include("author");
+        allQuery.include("owner");
         allQuery.setLimit(pageCapacity);
         allQuery.order("-createdAt");
         allQuery.findObjects(FindBook.this, new FindListener<Book>() {
@@ -298,7 +298,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
                     if (book != null) {
                         book.clear();
                     }
-                    ShowToast("没有您要找的问题，去提问吧");
+                    ShowToast("sorry，没有您要找的书籍");
                     mListView.setPullLoadEnable(false);
                 }
                 refreshPull();
@@ -310,7 +310,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
                 if (book != null) {
                     book.clear();
                 }
-                ShowToast("问题不存在");
+                ShowToast("书籍不存在");
                 mListView.setPullLoadEnable(false);
                 refreshPull();
                 curPage = 0;
@@ -322,7 +322,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         BmobQuery<Book> eq1 = new BmobQuery<>();
         eq1.addWhereContains("title", et_search_question.getText().toString());
         BmobQuery<Book> eq2 = new BmobQuery<>();
-        eq2.addWhereContains("question_content", et_search_question.getText().toString());
+        eq2.addWhereContains("intro", et_search_question.getText().toString());
         BmobQuery<Book> eq3=new BmobQuery<>();
         eq3.addWhereContains("tags", et_search_question.getText().toString());
         List<BmobQuery<Book>> queries = new ArrayList<>();
@@ -332,7 +332,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
         BmobQuery<Book> mainQuery = new BmobQuery<>();
         mainQuery.setLimit(pageCapacity);
         mainQuery.order("-createdAt");
-        mainQuery.include("author");
+        mainQuery.include("owner");
         mainQuery.or(queries);
         mainQuery.findObjects(FindBook.this, new FindListener<Book>() {
             @Override
@@ -353,7 +353,7 @@ public class FindBook extends ActivityBase implements View.OnClickListener,XList
 
             @Override
             public void onError(int i, String s) {
-                ShowLog("搜索更多问题出错:"+s);
+                ShowLog("搜索更多书籍出错:"+s);
                 mListView.setPullLoadEnable(false);
                 refreshLoad();
                 mListView.stopRefresh();
