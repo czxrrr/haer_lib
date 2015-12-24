@@ -75,10 +75,12 @@ public class RentBook extends ActivityBase {
         done= (TextView) findViewById(R.id.btn_done);
         jd=(TextView)findViewById(R.id.btn_jd);
 
+
         u=BmobUser.getCurrentUser(RentBook.this, User.class);
         book.setObjectId(getIntent().getStringExtra("book"));
         available=getIntent().getStringExtra("available");
        // Tool.alert(RentBook.this, book.getObjectId());
+        //img= (ImageView) findViewById(R.id.img_friend_avatar);
         img= (ImageView) findViewById(R.id.img_friend_avatar);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +113,20 @@ public class RentBook extends ActivityBase {
                     author_name = bb.getOwner().getUsername();
 
                 }
+                String usr_avatar=bb.getOwner().getAvatar();
+                if (usr_avatar != null && !usr_avatar.equals("")) {//加载头像-为了不每次都加载头像
+                    ImageLoader.getInstance().displayImage(usr_avatar, img, ImageLoadOptions.getOptions(), animateFirstListener);
+                } else {
+                    book_cover.setImageResource(R.drawable.head);
+                }
+                TextView tv_friend_name= (TextView) findViewById(R.id.tv_friend_name);
+                tv_friend_name.setText(bb.getOwner().getUsername());
+                TextView campus= (TextView) findViewById(R.id.campus);
+                campus.setText(bb.getOwner().getCampus());
+                TextView signature= (TextView) findViewById(R.id.signature);
+                signature.setText(bb.getOwner().getSignature());
+
+
 
             }
 

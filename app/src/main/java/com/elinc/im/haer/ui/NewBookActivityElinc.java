@@ -707,7 +707,7 @@ public class NewBookActivityElinc extends ActivityBase {
         });
     }
 
-    private void updateQuestionAvatar(String url) {
+    private void updateQuestionAvatar(final String url) {
         new_book.setBookAvatar(url);
         refreshAvatar(url);
     }
@@ -769,6 +769,7 @@ public class NewBookActivityElinc extends ActivityBase {
         } else {
             iv_set_question_avatar.setImageResource(R.drawable.default_head);
         }
+        iv_set_question_avatar.setVisibility(View.VISIBLE);
     }
 
 
